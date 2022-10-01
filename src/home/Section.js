@@ -3,7 +3,7 @@ import pong2 from "../images/3.png"
 import Navbar from "./Navbar";
 import "../styles/section.css"
 
-function Section() {
+function Section({setshow}) {
     return (
         <div className="section_1">
             <Navbar />         
@@ -14,7 +14,7 @@ function Section() {
                 <div>
                     <img src={pong2} className="pong" alt="" />
                 </div>
-                <button className='Play'>Play Now</button>
+                <button className='Play' onClick={() => setshow(true)}>Play Now</button>
             </div>
         </div>
     )
