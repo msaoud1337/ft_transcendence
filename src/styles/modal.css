@@ -18,7 +18,7 @@ html {
 .modil {
     width: 28%;
     height: 75%;
-    background-color: burlywood;
+    background-color: rgb(174, 67, 231);
     border-radius: 2rem;
     padding: 2rem 3rem;
 }
@@ -27,13 +27,11 @@ html {
     width: 100%;
     height: 3rem;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
 }
 
 .Log_modal {
     height: 3rem;
-    background-color: black;
-    color: black;
 }
 
 .icone_modal {
@@ -43,3 +41,82 @@ html {
     background-repeat: no-repeat;
 }
 
+.Login_in_title {
+    font-size: 3rem;
+    padding-top: 2rem;
+    font-weight: 500;
+}
+
+.user_information {
+    height: 80%;
+    width: 100%;
+    background-color: rebeccapurple;
+    margin-top: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+    gap: 1rem;
+}
+
+.Email_Address{
+    width: 100%;
+    font-size: 1.5rem;
+    display: flex;
+    gap: 0.4rem;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.inputs {
+    height: 4rem;
+    border-radius: 0.7rem;
+    color: black;
+    padding: 1rem 1rem;
+    font-family: sans-serif;
+}
+
+.Forgot_password_bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.2rem;
+}
+
+.icone_div {
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+}
+
+.Forgot_password{
+    text-decoration: underline;
+}
+
+.Login_button_modal {
+    width: 100%;
+    height: 4rem;
+    border-radius: 1rem;
+    background-color: blueviolet;
+}
+
+.Sign_up {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.Sign_up_1{
+    text-decoration: underline;
+    color: #05F2DB;
+    font-size: 1.3rem;
+}
+
+.Google {
+    height: 3rem;
+    width: 15rem;
+    border: solid 0.1rem black;
+    border-radius: 1rem;
+    background-color: white;
+}
