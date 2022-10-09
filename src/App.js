@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 function App() {
     const [show, setshow] = useState(false)
-    // console.log("from app",show)
     return (
         <Router>
             <div className="App">
