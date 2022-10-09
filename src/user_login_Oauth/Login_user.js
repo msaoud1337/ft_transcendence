@@ -1,6 +1,7 @@
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { gapi } from 'gapi-script';
 import React , {useState , useEffect} from "react";
+import GoogleButton from 'react-google-button'
 
 export default function Login_user({profile, setProfile}) {
         const clientId = "165480600397-7ok712iq2lhqb827lv68v96jpmojnpb5.apps.googleusercontent.com";
@@ -37,7 +38,7 @@ export default function Login_user({profile, setProfile}) {
                             clientId={clientId}
                             buttonText="Log out"
                             onLogoutSuccess={logOut}
-                        />
+                            />
                         <img src={profile.imageUrl} alt="" />
                         <h3>User Logged in</h3>
                         <p>Name: {profile.name}</p>
@@ -48,12 +49,15 @@ export default function Login_user({profile, setProfile}) {
                 ) : (
                     <GoogleLogin
                         clientId={clientId}
-                        buttonText="Sign in with Google"
+                        // buttonText="Sign in with Google"
                         onSuccess={onSuccess}
                         onFailure={onFailure}
                         cookiePolicy={'single_host_origin'}
                         isSignedIn={true}
-                        style={{width : "10px"}}    
+                        render={renderProps => (
+                            <GoogleButton onClick={renderProps.onClick} disabled={renderProps.disabled}>Sign in with Google</GoogleButton>
+                          )}
+                            
                     />
                 )}
             </div>

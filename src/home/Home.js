@@ -8,15 +8,15 @@ function Home({ show, setshow }) {
     const [ profile, setProfile ] = useState(null);
     return (
         // <di>
-            <Login_user profile={profile}    setProfile={setProfile} />
+            // <Login_user profile={profile}    setProfile={setProfile} />
         // </div>
-        // <div className="root">
-        //     <Section setshow={setshow} />
-        //     <Secendbar />
-        //     <PopupRegistration
-        //         show={show}
-        //         onClose={() => setshow(false)} />
-        // </div>
+        <div className="root">
+            <Section setshow={setshow} />
+            <Secendbar />
+            <PopupRegistration
+                show={show}
+                onClose={() => setshow(false)} />
+        </div>
     )
 }
 

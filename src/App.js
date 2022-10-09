@@ -2,17 +2,24 @@ import Home from "./home/Home.js"
 import Users from "./users/Users.js";
 import { useState } from "react";
 import "./styles/users.css"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 function App() {
     const [show, setshow] = useState(false)
-    console.log("from app",show)
+    // console.log("from app",show)
     return (
-        // <div className="aa">
-        //     <button className="red" onClick={() => setshow(true)}>Pop up</button>
-        //     <PopupRegistration onClose={() => setshow(false)} show={show} />
-        // </div>
-        <Home show={show} setshow={setshow}/>
-        // <Users />
+        <Router>
+            <div className="App">
+                <Switch>
+                    <Route exact path="/">
+                        <Home show={show} setshow={setshow} />
+                    </Route>
+                    <Route path="/users">
+                        <Users /> 
+                    </Route>
+                </Switch>
+            </div>
+        </Router>
     )
 }
 
