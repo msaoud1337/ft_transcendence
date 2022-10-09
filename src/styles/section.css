@@ -95,3 +95,17 @@ html {
     height: 68.1%;
     
 }
+
+.google_container {
+    height: 50vh;
+    width: 100%;
+    background: #05F2DB;
+}
+
+
+.button_logout {
+    height: 75%;
+    width: 40%;
+    border: solid 0.3rem black;
+    background-color: #C4C4C4;
+}

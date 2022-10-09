@@ -1,9 +1,8 @@
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { gapi } from 'gapi-script';
-import React , {useState,useEffect} from "react";
+import React , {useState , useEffect} from "react";
 
-export default function Login_user() {
-        const [ profile, setProfile ] = useState([]);
+export default function Login_user({profile, setProfile}) {
         const clientId = "165480600397-7ok712iq2lhqb827lv68v96jpmojnpb5.apps.googleusercontent.com";
         useEffect(() => {
             const initClient = () => {
@@ -28,22 +27,23 @@ export default function Login_user() {
         };
       
         return (
-            <div className="test1">
+            <div className='google_container'>
                 <h2>React Google Login</h2>
                 <br />
                 <br />
                 {profile ? (
-                    <div>
+                    <div className='button_logout'>
+                        <GoogleLogout
+                            clientId={clientId}
+                            buttonText="Log out"
+                            onLogoutSuccess={logOut}
+                        />
                         <img src={profile.imageUrl} alt="" />
                         <h3>User Logged in</h3>
                         <p>Name: {profile.name}</p>
                         <p>Email Address: {profile.email}</p>
                         <br />
                         <br />
-                        <GoogleLogout
-                            clientId={clientId}
-                            buttonText="Log out"
-                            onLogoutSuccess={logOut} />
                     </div>
                 ) : (
                     <GoogleLogin
@@ -53,6 +53,7 @@ export default function Login_user() {
                         onFailure={onFailure}
                         cookiePolicy={'single_host_origin'}
                         isSignedIn={true}
+                        style={{width : "10px"}}    
                     />
                 )}
             </div>
