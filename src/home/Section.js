@@ -6,7 +6,6 @@ import "../styles/section.css"
 function Section({setshow}) {
     return (
         <div className="section_1">
-            <Navbar />         
             <div className="section_container">
                 <div>
                     <img src={pong} className="pong pong1" alt=""/>

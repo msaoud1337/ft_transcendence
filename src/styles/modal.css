@@ -120,3 +120,19 @@ html {
     border-radius: 1rem;
     background-color: white;
 }
+
+.sign_up {
+    height: 5rem;
+    width: 20rem;
+    background-color: #05F2DB;
+    color: black;
+    border: none;
+    border-radius: 1rem;
+}
+
+
+.profile_picture {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 3rem;
+}

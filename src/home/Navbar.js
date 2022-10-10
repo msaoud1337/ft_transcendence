@@ -1,26 +1,35 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faBell} from '@fortawesome/free-solid-svg-icons'
+import {faBell, faArrowRightFromBracket} from '@fortawesome/free-solid-svg-icons'
 import Image from "../images/1.png"
 import Image2 from "../images/2.png"
 import { Link } from "react-router-dom"
 
-function Navbar() {
+function Navbar({profile, setProfile}) {
+    // console.log(profile.imageUrl)
+    const logOut = () => {
+        console.log("clicked 1")
+        setProfile(null)
+    }
+
     return (
         <div className="navBar">
             <img className="pong" src={Image2} alt=""/>
             <section className="navBar_options">
                 <Link to="/">Home</Link>
-                <div>Channels</div>
-                <div>Game</div>
-                <Link to="/users">users</Link>
-                <div>About</div>
+                <Link>Channels</Link>
+                <Link>Game</Link>
+                <Link to="/users">Users</Link>
+                <Link to="/about">About</Link>
             </section>
-            <section className="userName">
-                <FontAwesomeIcon icon={faBell} className="fabell"/>
-                <div>Username</div>
-                <img src={Image} alt=""/>
-            </section>
+            {profile ? <section className="userName">
+                    <FontAwesomeIcon icon={faBell} className="fabell"/>
+                    <div>{profile.name}</div>
+                    <img className='profile_picture' src={profile.imageUrl} alt="" />
+                <FontAwesomeIcon icon={faArrowRightFromBracket} onClick={logOut} />
+                </section>
+            : <button className='sign_up'>Sign up</button>}
+        
         </div>
     )
 }

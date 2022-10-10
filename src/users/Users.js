@@ -7,7 +7,6 @@ import Information from "./Information"
 export default function Users() {
     return (
         <div className="Users_page">
-            <Navbar />
             <div className="Users_container">
                     <Information />
                     <div className="History_friends">
