@@ -5,24 +5,21 @@ import GoogleButton from 'react-google-button'
 
 
 
-export default function Login_user() {
-
+export default function Login_user({profile, setProfile}) {
+    console.log(profile, setProfile)
     const clientid = "165480600397-7ok712iq2lhqb827lv68v96jpmojnpb5.apps.googleusercontent.com"
-    const [user, setUser] = useState(
-        localStorage.getItem("logindata")
-            ? JSON.parse(localStorage.getItem("logindata"))
-            : null
-    )
-    console.log(user)
     const succes = (googleData) => {
-        console.log(googleData.tokenId)
+        localStorage.setItem("login_data", JSON.stringify(profile))
+        setProfile(googleData.profileObj)
+        console.log(profile)
     }
     const failure = (result) => {
-        alert(result)
+        localStorage.removeItem("login_data")
+        setProfile(null)
     }
 
     return (
-        <div className='test2'>
+        <div>
             <GoogleLogin
                 clientId={clientid}
                 buttonText="Log In with Google"
@@ -33,7 +30,9 @@ export default function Login_user() {
         </div>
     )
 }
-// export default function Login_user({profile, setProfile}) {
+
+// export default function Login_user({ profile, setProfile }) {
+//         console.log(profile)
 //         const clientId = "165480600397-7ok712iq2lhqb827lv68v96jpmojnpb5.apps.googleusercontent.com";
 //         useEffect(() => {
 //             const initClient = () => {
@@ -47,6 +46,7 @@ export default function Login_user() {
       
 //         const onSuccess = (res) => {
 //             setProfile(res.profileObj);
+//             console.log(profile)
 //         };
       
 //         const onFailure = (err) => {
@@ -58,32 +58,20 @@ export default function Login_user() {
 //         };
       
 //         return (
-//             <div className='google_container'>
-//                 <h2>React Google Login</h2>
-//                 <br />
-//                 <br />
+//             <div className='test2'>
 //                 {profile ? (
-//                     <div className='button_logout'>
 //                         <GoogleLogout
 //                             clientId={clientId}
 //                             buttonText="Log out"
 //                             onLogoutSuccess={logOut}
 //                             />
-//                         <img src={profile.imageUrl} alt="" />
-//                         <h3>User Logged in</h3>
-//                         <p>Name: {profile.name}</p>
-//                         <p>Email Address: {profile.email}</p>
-//                         <br />
-//                         <br />
-//                     </div>
 //                 ) : (
 //                     <GoogleLogin
 //                         clientId={clientId}
-//                         // buttonText="Sign in with Google"
 //                         onSuccess={onSuccess}
 //                         onFailure={onFailure}
 //                         cookiePolicy={'single_host_origin'}
-//                         isSignedIn={true}
+//                         isSignedIn={false}
 //                         render={renderProps => (
 //                             <GoogleButton onClick={renderProps.onClick} disabled={renderProps.disabled}>Sign in with Google</GoogleButton>
 //                           )}

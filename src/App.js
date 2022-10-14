@@ -7,14 +7,18 @@ import Navbar from "./home/Navbar.js";
 import Login_user from "./user_login_Oauth/Login_user.js";
 function App() {
     const [show, setshow] = useState(false)
-    const [profile, setProfile] = useState(null)
+    const [profile, setProfile] = useState(
+        localStorage.getItem("logindata")
+            ? JSON.parse(localStorage.getItem("logindata"))
+            : null
+    )
     return (
         <Router>
             <div className="App">
                 <Navbar profile={profile} setProfile={setProfile} />
                 <Switch>
                     <Route exact path="/">
-                        <Home show={show} setshow={setshow} />
+                        <Home show={show} setshow={setshow} profile={profile} setProfile={setProfile} />
                     </Route>
                     <Route path="/users">
                         <Users /> 

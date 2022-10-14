@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faXmark,faSquare,faSquareCheck } from "@fortawesome/free-solid-svg-icons"
 import {FcGoogle} from "react-icons/fc"
+import Login_user from "./Login_user"
 
-export default function RegistrationCom({ onClose,stayLogin, setstayLogin, click }) {
+export default function RegistrationCom({ onClose,stayLogin, click, profile, setProfile }) { 
     return (
         <div className="modil" onClick={e => e.stopPropagation()}>
             <div className="modil_close">
@@ -35,7 +36,7 @@ export default function RegistrationCom({ onClose,stayLogin, setstayLogin, click
                 <button className="Login_button_modal">Log in</button>
                 <div className="Sign_up"> <p>Dont have an account ? </p><p className="Sign_up_1">Sign up</p></div>
                 <div>or</div>
-                <FcGoogle className="Google" />
+                <Login_user profile={profile} setProfile={setProfile} />
             </div>
         </div>
     )
