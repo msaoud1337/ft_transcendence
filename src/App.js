@@ -8,8 +8,8 @@ import Login_user from "./user_login_Oauth/Login_user.js";
 function App() {
     const [show, setshow] = useState(false)
     const [profile, setProfile] = useState(
-        localStorage.getItem("logindata")
-            ? JSON.parse(localStorage.getItem("logindata"))
+        localStorage.getItem("login_data")
+            ? JSON.parse(localStorage.getItem("login_data"))
             : null
     )
     return (
