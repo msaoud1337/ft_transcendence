@@ -6,7 +6,7 @@ import Login_user from "../user_login_Oauth/Login_user";
 function Home({ show, setshow, profile, setProfile }) {
     return (
         <div className="root">
-            <Section setshow={setshow} />
+            <Section setshow={setshow} profile={profile} />
             <Secendbar />
             <PopupRegistration
                 show={show}

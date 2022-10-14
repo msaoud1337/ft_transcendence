@@ -15,7 +15,7 @@ function App() {
     return (
         <Router>
             <div className="App">
-                <Navbar profile={profile} setProfile={setProfile} />
+                <Navbar profile={profile} setProfile={setProfile} setshow={setshow} />
                 <Switch>
                     <Route exact path="/">
                         <Home show={show} setshow={setshow} profile={profile} setProfile={setProfile} />
