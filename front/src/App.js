@@ -12,6 +12,12 @@ function App() {
             ? JSON.parse(localStorage.getItem("login_data"))
             : null
     )
+    if (profile)
+    {
+        // setProfile([{...profile, date: "111"}])
+        localStorage.setItem("login_data", JSON.stringify(profile))
+        console.log(profile)
+    }
     return (
         <Router>
             <div className="App">
@@ -20,12 +26,9 @@ function App() {
                     <Route exact path="/">
                         <Home show={show} setshow={setshow} profile={profile} setProfile={setProfile} />
                     </Route>
-                    <Route path="/users">
-                        <Users /> 
-                    </Route>
-                    <Route path="/about">
-                        <Login_user profile={profile} setProfile={setProfile} />
-                    </Route>
+                    {/* <Route path="/users">
+                        {profile ? <Users profile={profile} /> : <Home show={show} setshow={setshow} profile={profile} setProfile={setProfile} />} 
+                    </Route>  */}
                 </Switch>
             </div>
         </Router>

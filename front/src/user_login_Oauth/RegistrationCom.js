@@ -4,6 +4,7 @@ import {FcGoogle} from "react-icons/fc"
 import Login_user from "./Login_user"
 
 export default function RegistrationCom({ onClose,stayLogin, click, profile, setProfile }) { 
+    console.log(profile)
     return (
         <div className="modil" onClick={e => e.stopPropagation()}>
             <div className="modil_close">

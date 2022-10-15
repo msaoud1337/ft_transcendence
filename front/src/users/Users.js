@@ -4,11 +4,11 @@ import Friends from "./Friends"
 import Information from "./Information"
 
 
-export default function Users() {
+export default function Users({ profile }) {
     return (
         <div className="Users_page">
             <div className="Users_container">
-                    <Information />
+                <Information profile={profile} />
                     <div className="History_friends">
                         <History />
                         <Friends />

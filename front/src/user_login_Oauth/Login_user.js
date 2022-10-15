@@ -6,20 +6,17 @@ import GoogleButton from 'react-google-button'
 
 
 export default function Login_user({profile, setProfile}) {
-    const clientid = "165480600397-7ok712iq2lhqb827lv68v96jpmojnpb5.apps.googleusercontent.com"  
-    if (profile)
-    {
-        console.log(profile)
-        localStorage.setItem("login_data", JSON.stringify(profile))
-    }
+    const clientid = "165480600397-7ok712iq2lhqb827lv68v96jpmojnpb5.apps.googleusercontent.com"    
+    
     
     const succes = (googleData) => {
-        setProfile(googleData.profileObj)
+        setProfile({data : googleData.profileObj, Hour : "8.18", day : "10/14"})   
     }
-    
+
+    console.log(profile)
+
     const failure = (result) => {
         localStorage.removeItem("login_data")
-        setProfile(null)
     }
 
     return (
