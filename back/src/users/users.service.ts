@@ -52,6 +52,20 @@ export class UsersService {
     }
   }
 
+  async findByUsername(username: string): Promise<User> {
+    try {
+      const user = await this.connection.getRepository(User).findOne({
+        user_name: username
+      });
+      if (!user) {
+        return null;
+      }
+      return user;
+    } catch (err) {
+      return null;
+    }
+  }
+
   async updateProfile(id: number, user_name: string, file: Express.Multer.File): Promise<User> {
     try {
       if (file) {

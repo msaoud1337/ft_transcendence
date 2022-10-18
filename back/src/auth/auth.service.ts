@@ -35,7 +35,7 @@ export class AuthService {
     /* function used for creating the user if not exist and sign it */
     async login(_req: any, _res: any): Promise<any> {
         try {
-            let user = await this.usersService.findOne(Number(_req.user.id));
+            let user = await this.usersService.findByUsername(_req.user.username);
             let url: string;
             if (user && user.is_2fa_enabled) {
                 _res.cookie('key', user.id);
