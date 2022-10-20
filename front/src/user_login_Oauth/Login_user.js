@@ -10,7 +10,7 @@ export default function Login_user({profile, setProfile}) {
     
     
     const succes = (googleData) => {
-        setProfile({data : googleData.profileObj, Hour : "8.18", day : "10/14"})   
+        setProfile(googleData.profileObj)
     }
 
     console.log(profile)

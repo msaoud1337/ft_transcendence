@@ -1,8 +1,6 @@
-import Navbar from "../home/Navbar"
 import History from "./History"
 import Friends from "./Friends"
 import Information from "./Information"
-
 
 export default function Users({ profile }) {
     return (
@@ -10,7 +8,7 @@ export default function Users({ profile }) {
             <div className="Users_container">
                 <Information profile={profile} />
                     <div className="History_friends">
-                        <History />
+                        <History profile={profile}/>
                         <Friends />
                     </div>
             </div>
