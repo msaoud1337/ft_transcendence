@@ -2,13 +2,12 @@ import Result from "./Result";
 
 
 
-export default function His() {
+export default function His({profile}) {
     return (
         <div className="His">
-            <Result />
-            <Result />
-            <Result />
-            <Result />
+            <Result profile={profile}/>
+            <Result profile={profile}/>
+            <Result profile={profile}/>
         </div>
     )
 }
