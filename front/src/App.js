@@ -26,7 +26,9 @@ function App() {
                         <Home show={show} setshow={setshow} profile={profile} setProfile={setProfile} />
                     </Route>
                     <Route path="/users">
-                        {profile ? <Users profile={profile} /> : <Home show={show} setshow={setshow} profile={profile} setProfile={setProfile} />} 
+                        {profile 
+                        ? <Users profile={profile} setProfile={setProfile} /> 
+                        : <Home show={show} setshow={setshow} profile={profile} setProfile={setProfile} />} 
                     </Route> 
                 </Switch>
             </div>
