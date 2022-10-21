@@ -1,24 +1,43 @@
 import React, { useState } from "react";
-import ImageUploading from 'react-images-uploading';
-import Upload from "./Upload";
 
-export default function Edit_user({setvalue, editUser, profile}) {
+export default function Edit_user({setvalue, editUser, setProfile,profile}) {
     
     const [images, setImages] = useState(profile.imageUrl)
-
-    console.log(editUser)
-
+    
+    
     const test = () => {
-        const input = document.querySelector(input)
-        console.log(input)        
+        const input = document.querySelector("input")
+        input.click()
+    }
+
+    const change = (e) => {
+        // console.log(e.target.files)
+        // setImages([...e.target.files])
+        // const image = e.target.files[0]
+        // console.log(image)
+        // console.log("test" + image)
+
+        setImages(URL.createObjectURL(e.target.files[0]))
+        setProfile({...profile, imageUrl : images})
+        console.log("Hi")
     }
 
     return (
         <div className="modal" onClick={setvalue}>
-            <div className="edit_user">
-                <img src={profile.imageUrl}/>
-                <input type="file"  accept="image/*" />
-                <div style={{color : "Red"}} onClick={test}>Click here</div>
+            <div className="edit_user" onClick={e => e.stopPropagation()}>
+                <img src={profile.imageUrl} style={{height : "5rem", width : "5rem"}}/>
+                <input 
+                    type="file"  
+                    accept="image/*" 
+                    multiple
+                    onChange={change}
+                />
+                <div 
+                    style={{color : "blue", textDecoration : "underline", cursor : "pointer"}} 
+                    onClick={test}>
+                        Change your image
+                </div>
+                     <img src={images}  alt= "" style={{height : "5rem", width : "5rem"}}/>
             </div>
         </div>
     )

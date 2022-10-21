@@ -33,7 +33,7 @@ export default function Information({ profile, setProfile }) {
             </div>
             <Button value="Edit Profil" setProfile={setProfile} editUser={editUser} setEditUser={setEditUser} setvalue={setvalue}/>
             { editUser
-                ? <Edit_user profile={profile} setvalue={setvalue} editUser={editUser}/>
+                ? <Edit_user profile={profile} setProfile={setProfile} setvalue={setvalue} editUser={editUser}/>
                 : null   
             }
         </div>
