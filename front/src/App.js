@@ -14,8 +14,8 @@ function App() {
     )
     if (profile)
     {
-        localStorage.setItem("login_data", JSON.stringify(profile))
-        console.log(profile)
+        // localStorage.setItem("login_data", JSON.stringify(profile))
+        console.log("test" , profile)
     }
     return (
         <Router>

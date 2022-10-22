@@ -8,17 +8,13 @@ export default function Edit_user({setvalue, editUser, setProfile,profile}) {
     const test = () => {
         const input = document.querySelector("input")
         input.click()
+        console.log(profile) 
     }
 
     const change = (e) => {
-        // console.log(e.target.files)
-        // setImages([...e.target.files])
-        // const image = e.target.files[0]
-        // console.log(image)
-        // console.log("test" + image)
-
         setImages(URL.createObjectURL(e.target.files[0]))
-        setProfile({...profile, imageUrl : images})
+        setProfile({...profile, imageUrl : URL.createObjectURL(e.target.files[0]), name : "saoud"})
+        console.log(e.target.files)
         console.log("Hi")
     }
 
