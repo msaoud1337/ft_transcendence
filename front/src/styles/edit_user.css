@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.edit_user {
+    height: 70%;
+    width: 30%;
+    background-color: white;
+    border-radius: 2rem;
+    padding: 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color : black;
+}
+
+.Edit_user_information {
+    display: flex;
+    flex-direction: column;
+}
+
+.Edit_user_information div{
+    color : black;
+}
+
+.Edit_user_information input{
+    color : black;
+}

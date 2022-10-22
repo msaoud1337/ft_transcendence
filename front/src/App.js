@@ -5,6 +5,7 @@ import "./styles/users.css"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Navbar from "./home/Navbar.js";
 import Login_user from "./user_login_Oauth/Login_user.js";
+
 function App() {
     const [show, setshow] = useState(false)
     const [profile, setProfile] = useState(
@@ -14,7 +15,7 @@ function App() {
     )
     if (profile)
     {
-        // localStorage.setItem("login_data", JSON.stringify(profile))
+        localStorage.setItem("login_data", JSON.stringify(profile))
         console.log("test" , profile)
     }
     return (
