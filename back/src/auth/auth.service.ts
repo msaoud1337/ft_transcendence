@@ -35,23 +35,30 @@ export class AuthService {
     /* function used for creating the user if not exist and sign it */
     async login(_req: any, _res: any): Promise<any> {
         try {
-            let user = await this.usersService.findByUsername(_req.user.username);
+            console.log("test:", _req.body)
+            let user = await this.usersService.findByUsername(_req.body.user_name);
+            console.log("user:",user)
             let url: string;
             if (user && user.is_2fa_enabled) {
+                console.log("amine1");
                 _res.cookie('key', user.id);
                 url = this.configService.get('VERIFY_PAGE');
                 return _res.redirect(url);
             }
             else if (!user) {
+                console.log("amine2");
                 user = await this.usersService.create(_req.user);
                 url = this.configService.get('COMPLETE_INFO'); // redirect to complete-info page
             } else {
+                console.log("amine3");
                 url = this.configService.get('HOME_PAGE'); // redirect to Home page
             }
+            console.log("amine4");
             const payload: JwtPayload = { id: user.id, user_name: user.user_name, email: user.email };
             const token = this.jwtService.sign(payload);
-            _res.cookie('accessToken', token);
-            return _res.redirect(url);
+            // _res.cookie('accessToken', token);
+            return _res.send(token);
+            // return _res.redirect(url);
         } catch (err) {
             throw new ForbiddenException('Forbidden: user cannot log in');
         }
@@ -76,10 +83,12 @@ export class AuthService {
             let user: UserDto = req.body;
             console.log(user);
             user = await this.usersService.create(user);
+            console.log("test:", user)
             const payload: JwtPayload = { id: user.id, user_name: user.user_name, email: user.email };
             const token = this.jwtService.sign(payload);
             res.cookie('accessToken', token);
-            return res.redirect(this.configService.get('HOME_PAGE'));
+            return res.send("all is good");
+            // return res.redirect(this.configService.get('HOME_PAGE'));
         } catch (err) {
             throw err;
         }

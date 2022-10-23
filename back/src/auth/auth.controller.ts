@@ -36,7 +36,10 @@ export class AuthController {
 
     @Post('/signup')
     @HttpCode(200)
-    signup(@Req() _req: any, @Res() _res: any): Promise<any> {
+    signup(@Req() _req: any, @Res() _res: any)/* : Promise<any> */ {
+        console.log("req:",_req.body)
+        // return "sahbi amine"
+        // _res.send("sahbi amine");
         return this.authService.signup(_req, _res);
     }
 
