@@ -4,7 +4,7 @@ import { useState } from "react";
 import "./styles/users.css"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Navbar from "./home/Navbar.js";
-import Login_user from "./user_login_Oauth/Login_user.js";
+
 function App() {
     const [show, setshow] = useState(false)
     const [profile, setProfile] = useState(
@@ -15,7 +15,7 @@ function App() {
     if (profile)
     {
         localStorage.setItem("login_data", JSON.stringify(profile))
-        console.log(profile)
+        console.log("test" , profile)
     }
     return (
         <Router>
@@ -26,7 +26,9 @@ function App() {
                         <Home show={show} setshow={setshow} profile={profile} setProfile={setProfile} />
                     </Route>
                     <Route path="/users">
-                        {profile ? <Users profile={profile} /> : <Home show={show} setshow={setshow} profile={profile} setProfile={setProfile} />} 
+                        {profile 
+                        ? <Users profile={profile} setProfile={setProfile} /> 
+                        : <Home show={show} setshow={setshow} profile={profile} setProfile={setProfile} />} 
                     </Route> 
                 </Switch>
             </div>

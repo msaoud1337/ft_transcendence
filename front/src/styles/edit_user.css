@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.Edit_user_data_text {
+    font-size: 3rem;
+    color: black;
+    margin-bottom: 5rem;
+    margin-top: 2rem;
+    font-family: sans-serif;
+}
+
+.edit_user {
+    height: 65%;
+    width: 25%;
+    background-color: white;
+    border-radius: 2rem;
+    padding: 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit_user_1 {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Edit_profile_picture {
+    height: 15rem;
+    width: 15rem;
+    border: black 0.2rem solid;
+    margin-bottom: 0.5rem; 
+}
+
+.Edit_user_information {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.Edit_user_information input{
+    color : black;
+    font-size: 1rem;
+    height: 3rem;
+    width: 100%;
+    border: black solid 0.1rem;
+    font-family: sans-serif;
+    padding-left: 1rem;
+    text-align: center;
+}
+
+.Apply_change {
+    background-color: #0711D9;
+    height: 3rem;
+    width: 50%;
+    border-radius: 1rem;
+    border: solid 0.1rem black;
+}
+
+.edit_picture_button {
+    color : blue;
+    text-decoration: underline;
+    cursor : pointer;
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+}

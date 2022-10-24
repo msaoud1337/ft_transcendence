@@ -3,14 +3,7 @@ import { useState } from "react"
 
 
 
-export default function Button({value}) {
-
-    const [editUser, setEditUser] = useState(false)
-
-    const setvalue = () => {
-        setEditUser(!editUser)
-        console.log(setEditUser)
-    }
+export default function Button({value, setProfile, editUser, setEditUser, setvalue}) {
 
     return (
         <button className="Edit_profil" onClick={setvalue}>{value}</button>

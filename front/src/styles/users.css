@@ -152,12 +152,22 @@
     background-color: #16152B;
 }
 
-.image_profile {
-    border-radius: 5rem;
-}
 
 .profileImg_history {
     height: 4rem;
     width: 4rem;
     border-radius: 2rem;
+}
+
+.image_profile {
+    border-radius: 5rem;
+    height: 10rem;
+    width: 10rem;
+    border: solid yellow 0.2rem;
+}
+
+
+.input_change {
+    border: none;
+    color: #0711D9;
 }
