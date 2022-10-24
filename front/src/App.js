@@ -4,7 +4,6 @@ import { useState } from "react";
 import "./styles/users.css"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Navbar from "./home/Navbar.js";
-import Login_user from "./user_login_Oauth/Login_user.js";
 
 function App() {
     const [show, setshow] = useState(false)

@@ -5,20 +5,17 @@ import GoogleButton from 'react-google-button'
 
 
 
-export default function Login_user({profile, setProfile}) {
+export default function Login_user({setProfile}) {
     const clientid = "165480600397-7ok712iq2lhqb827lv68v96jpmojnpb5.apps.googleusercontent.com"    
-    
-    
+
     const succes = (googleData) => {
         setProfile(googleData.profileObj)
     }
 
-    console.log(profile)
-
-    const failure = (result) => {
+    const failure = () => {
         localStorage.removeItem("login_data")
     }
-
+    
     return (
         <div>
             <GoogleLogin
@@ -27,7 +24,10 @@ export default function Login_user({profile, setProfile}) {
                 onSuccess={succes}
                 onFailure={failure}
                 cookiePolicy={"single_host_origin"}
-            ></GoogleLogin>
+                render={renderProps => (
+                    <GoogleButton onClick={renderProps.onClick} disabled={renderProps.disabled}>Sign in with Google</GoogleButton>
+                )}
+                ></GoogleLogin>
         </div>
     )
 }
@@ -73,9 +73,6 @@ export default function Login_user({profile, setProfile}) {
 //                         onFailure={onFailure}
 //                         cookiePolicy={'single_host_origin'}
 //                         isSignedIn={false}
-//                         render={renderProps => (
-//                             <GoogleButton onClick={renderProps.onClick} disabled={renderProps.disabled}>Sign in with Google</GoogleButton>
-//                           )}
                             
 //                     />
 //                 )}

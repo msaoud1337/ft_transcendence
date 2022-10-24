@@ -28,6 +28,7 @@ html {
     align-items: center;
     background-color: #0D0C19;
     position: fixed;
+    font-family: 'Fredoka One', cursive;
 }
 
 .pong {
