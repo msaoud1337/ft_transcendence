@@ -22,6 +22,7 @@ export default function Edit_user({setvalue, editUser, setProfile,profile}) {
             name : inputValue.value ? inputValue.value : profile.name, 
             imageUrl : images
         })
+        setvalue()
     }
 
     return (

@@ -24,9 +24,9 @@ export default function Login_user({setProfile}) {
                 onSuccess={succes}
                 onFailure={failure}
                 cookiePolicy={"single_host_origin"}
-                render={renderProps => (
-                    <GoogleButton onClick={renderProps.onClick} disabled={renderProps.disabled}>Sign in with Google</GoogleButton>
-                )}
+                // render={renderProps => (
+                //     <GoogleButton onClick={renderProps.onClick} disabled={renderProps.disabled}>Sign in with Google</GoogleButton>
+                // )}
                 ></GoogleLogin>
         </div>
     )

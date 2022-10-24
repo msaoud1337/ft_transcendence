@@ -15,14 +15,40 @@ html {
     align-items: center;
 }
 
-.modil {
+ .modil {
     width: 28%;
     height: 75%;
-    background-color: rgb(174, 67, 231);
+    background-color: white;
     border-radius: 2rem;
     padding: 2rem 3rem;
 }
 
+
+.Sign_up_container div  {
+    margin: 0;
+    padding: 0;
+    height: 5rem;
+    width: 100%;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: auto !important;
+}
+
+.Sign_up_container div button {
+    background-color: #4285f4 !important;
+    width: 100%;
+    margin: 0.5rem;
+}
+
+.Sign_up_container div div {
+    background-color: white !important;
+    height: 5rem;
+    width: 5rem;
+    margin-left: 20% !important;
+}
+/*
 .modil_close {
     width: 100%;
     height: 3rem;
@@ -119,7 +145,7 @@ html {
     border: solid 0.1rem black;
     border-radius: 1rem;
     background-color: white;
-}
+} */
 
 .sign_up {
     height: 5rem;
