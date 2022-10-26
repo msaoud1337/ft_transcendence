@@ -9,10 +9,12 @@ export default function Login_user({setProfile}) {
 
     const succes = (googleData) => {
         setProfile(googleData.profileObj)
+        localStorage.setItem("login_data", JSON.stringify(googleData.profileObj))
     }
 
-    const failure = () => {
+    const failure = (failure) => {
         localStorage.removeItem("login_data")
+        console.log(failure)
     }
     
     return (

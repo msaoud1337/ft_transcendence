@@ -1,11 +1,9 @@
 import Login_user from "../Login_user";
-import "../../styles/Sign.css"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default function SignUp({profile, setProfile}){
+export default function SignUp({profile, setProfile, sign}) {
     return (
         <div className="Sign_up_container">
-            <div className="Sign_up_pong">Sign In to <br/>Pong</div> 
+            <div className="Sign_up_pong">Sign Up to Pong</div>
             <div className="Login_user_container">
                 <Login_user  profile={profile} setProfile={setProfile}/>
             </div>
@@ -15,13 +13,12 @@ export default function SignUp({profile, setProfile}){
             <div className="input_containers">
                 <input placeholder="Username / Email"/>
                 <input placeholder="password"/>
+                <input placeholder="Confirm your password"/>
                 <div className="Contunie_container">
                     <button className="Contunie_">Continue</button>
-                    {/* <FontAwesomeIcon icon={solid("fa-square-check")} /> */}
-                </div> 
+                </div>
+                <div className="Join">Already membre ?<span onClick={sign}>Sign in</span></div>
             </div>
-            <hr className="line"></hr>
-
         </div>
     )
 }

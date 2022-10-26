@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
     gap: 3.5rem;
+    padding-bottom: 6rem;
 }
 
 .Sign_up_pong {
@@ -64,13 +65,27 @@
 }
 
 .line {
-    border-top: #000 0.1rem solid;
+    border-top: #000 0.2rem solid;
     margin: 0;
     padding: 0;
 }
 
-.Squarecheck {
-    color: red;
-    height: 2rem;
-    background-color: red;
+.faBeer {
+    /* background-color: red; */
+    height: 10rem;
+    width: 10rem;
+    /* color: red; */
+}
+
+.Join {
+    color: #000;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.Join span {
+    color: #3405f2;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 800;
 }
