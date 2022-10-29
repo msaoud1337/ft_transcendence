@@ -2,9 +2,14 @@ import Button from "./Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCakeCandles} from "@fortawesome/free-solid-svg-icons"
 import {faUserGroup} from "@fortawesome/free-solid-svg-icons"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Edit_user from "./Edit_user/Edit_user";
 import profil from "../images/profil.svg"
+
+
+
+
+
 export default function Information({ profile, setProfile }) {
 
     const [editUser, setEditUser] = useState(false)
@@ -15,16 +20,20 @@ export default function Information({ profile, setProfile }) {
         setEditUser(!editUser)
     }
 
+    useEffect(() => {
+        {!profile.avatar_url && setvalue()}
+    }, [])
+
     return (
         <div className="Information">
             <div className="_info">
-                <img src={profile.imageUrl} alt="" className="image_profile"/>
-                <div>{profile.name}</div>
+                <img src={profile.avatar_url} alt="" className="image_profile"/>
+                <div>{profile.display_name}</div>
             </div>
             <div className="joindate_friends">
                 <div className="join_date">
                     <FontAwesomeIcon icon={faCakeCandles} className="icon" />
-                    <div>Joined On 1337</div>
+                    <div>Joined On :<br/>{profile.createdAt.substring(0,10)}</div>
                 </div>
                 <div className="friends_bar">
                     <FontAwesomeIcon icon={faUserGroup}/>

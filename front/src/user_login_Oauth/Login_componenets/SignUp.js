@@ -41,9 +41,6 @@ export default function SignUp({profile, setProfile, sign}) {
             console.log("data changed in the profile")
             localStorage.setItem("login_data", JSON.stringify(response.data))
         })
-        .catch(err) {
-            console.log(err)
-        }
     }
 
     return (

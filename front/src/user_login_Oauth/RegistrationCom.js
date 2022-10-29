@@ -10,7 +10,6 @@ export default function RegistrationCom({ onClose, profile, setProfile }) {
         setSigne_in(!signe_in)
     }
 
-    console.log(profile)
     return (
         <div className="modil" onClick={e => e.stopPropagation()}>
             { !signe_in 

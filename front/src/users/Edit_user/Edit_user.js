@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "../../styles/edit_user.css"
+import edit from "../../images/edit_icone.svg"
 
-export default function Edit_user({setvalue, editUser, setProfile,profile}) {
+export default function Edit_user({setvalue, setProfile,profile}) {
     
-    const [images, setImages] = useState(profile.imageUrl)
+    const [images, setImages] = useState(profile.avatar_url)
     
     const test = () => {
         const input = document.querySelector("input")
         input.click()
-        console.log(profile) 
+        console.log(profile)
     }
 
     const change = (e) => {
@@ -16,11 +17,11 @@ export default function Edit_user({setvalue, editUser, setProfile,profile}) {
         setImages(URL.createObjectURL(e.target.files[0]))
     }
     
-    const changeData = () => {
-        const inputValue = document.querySelector(".edit_user_nameInput")
+    const saveChanges = () => {
+        const inputValue = document.querySelector(".display_name_input")
         setProfile({...profile, 
-            name : inputValue.value ? inputValue.value : profile.name, 
-            imageUrl : images
+            display_name : inputValue.value ? inputValue.value : profile.display_name, 
+            avatar_url : images
         })
         setvalue()
     }
@@ -28,24 +29,17 @@ export default function Edit_user({setvalue, editUser, setProfile,profile}) {
     return (
         <div className="modal" onClick={setvalue}>
             <div className="edit_user" onClick={e => e.stopPropagation()}>
-                <div className="Edit_user_data_text"> Change your data</div>
-                <div className="edit_user_1">
-                    <img src={images} className="Edit_profile_picture"/>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={change}
-                        style={{display: "none"}}
-                        />
-                    <div 
-                        className="edit_picture_button" 
-                        onClick={test}>
-                            Change your image
+                <div className="edit_user_container">
+                    <div>
+                        <img src={images} alt="" className="image"/>
+                        <img src={edit} alt="" className="edit_icone" onClick={test}/>
                     </div>
-                    <div className="Edit_user_information">
-                        <input type="text" className="edit_user_nameInput" placeholder="Entre new name"/>
-                    </div>
-                    <button className="Apply_change" onClick={changeData}>Apply changes ?</button>
+                    <input type="file" alt="" className="image_input" onChange={change}/>
+                    <input type="text" alt="" className="display_name_input" placeholder="Username"/>
+                </div>
+                <div className="edit_data_buttons">
+                    <button className="cancel" onClick={setvalue}>Cancel</button>
+                    <button className="save" onClick={saveChanges}>Save</button>
                 </div>
             </div>
         </div>

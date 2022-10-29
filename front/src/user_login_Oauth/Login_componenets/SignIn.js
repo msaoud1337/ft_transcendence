@@ -7,7 +7,7 @@ export default function SignIn({profile, setProfile, sign}){
 
     const Inputvalue = {
         name : "", 
-        password : ""
+        password : "",
     }
 
     const Login_request = () => {

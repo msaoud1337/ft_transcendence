@@ -12,7 +12,8 @@ function App() {
             ? JSON.parse(localStorage.getItem("login_data"))
             : null
     )
-    console.log("test" , profile)
+    if (profile)
+        localStorage.setItem("login_data", JSON.stringify(profile))
     return (
         <Router>
             <div className="App">
