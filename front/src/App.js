@@ -13,10 +13,7 @@ function App() {
             : null
     )
     if (profile)
-    {
         localStorage.setItem("login_data", JSON.stringify(profile))
-        console.log("test" , profile)
-    }
     return (
         <Router>
             <div className="App">
