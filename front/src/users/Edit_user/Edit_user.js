@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/edit_user.css"
 import edit from "../../images/edit_icone.svg"
+import axios from "axios";
 
 export default function Edit_user({setvalue, setProfile,profile}) {
     
@@ -19,13 +20,25 @@ export default function Edit_user({setvalue, setProfile,profile}) {
     
     const saveChanges = () => {
         const inputValue = document.querySelector(".display_name_input")
-        setProfile({...profile, 
+        setProfile({...profile,
             display_name : inputValue.value ? inputValue.value : profile.display_name, 
-            avatar_url : images
+            avatar_url : images,
+            token : JSON.parse(localStorage.getItem("user_token"))
         })
-        setvalue()
-    }
+        
+        axios.patch("http://localhost:3001/api/users/update-profile", {
+            user_name : inputValue.value,
+        }, {
+            headers : {
+                Authorization : `Bearer ${JSON.parse(localStorage.getItem("user_token"))}`
+            }
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
 
+        setvalue() // we close the tab when some data changes
+    }
+    
     return (
         <div className="modal" onClick={setvalue}>
             <div className="edit_user" onClick={e => e.stopPropagation()}>

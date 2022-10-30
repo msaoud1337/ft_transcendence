@@ -9,6 +9,7 @@ function Navbar({profile, setProfile, setshow}) {
 
     const logOut = () => {
         localStorage.removeItem("login_data")
+        localStorage.removeItem("user_token")
         setProfile(null)
     }
     

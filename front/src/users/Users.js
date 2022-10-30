@@ -1,6 +1,7 @@
 import History from "./History"
 import Friends from "./Friends"
 import Information from "./Information"
+import { useEffect } from "react"
 
 export default function Users({ profile , setProfile }) {
     return (

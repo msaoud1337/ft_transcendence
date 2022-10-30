@@ -17,7 +17,7 @@ export default function SignIn({profile, setProfile, sign, signup_succes, setsig
                 password : password,
             }
         )
-        .then(res => { 
+        .then(res => {
             axios.get("http://localhost:3001/api/users/me", {
                 headers : {
                     "Authorization" : `Bearer ${res.data}`
@@ -26,6 +26,7 @@ export default function SignIn({profile, setProfile, sign, signup_succes, setsig
             .then(response => {
                 setProfile(response.data)
                 localStorage.setItem("login_data", JSON.stringify(response.data))
+                localStorage.setItem("user_token", JSON.stringify(res.data)) 
             })
         }
         )

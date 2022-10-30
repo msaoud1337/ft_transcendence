@@ -1,19 +1,23 @@
 import Home from "./home/Home.js"
 import Users from "./users/Users.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles/users.css"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Navbar from "./home/Navbar.js";
 
 function App() {
     const [show, setshow] = useState(false)
+
     const [profile, setProfile] = useState(
         localStorage.getItem("login_data")
             ? JSON.parse(localStorage.getItem("login_data"))
             : null
     )
+    
     if (profile)
         localStorage.setItem("login_data", JSON.stringify(profile))
+    
+    console.log(profile)
     return (
         <Router>
             <div className="App">
