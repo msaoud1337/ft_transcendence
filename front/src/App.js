@@ -4,20 +4,35 @@ import { useEffect, useState } from "react";
 import "./styles/users.css"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Navbar from "./home/Navbar.js";
+import axios from "axios";
+
+
+
 
 function App() {
     const [show, setshow] = useState(false)
-
-    const [profile, setProfile] = useState(
-        localStorage.getItem("login_data")
-            ? JSON.parse(localStorage.getItem("login_data"))
-            : null
-    )
     
-    if (profile)
-        localStorage.setItem("login_data", JSON.stringify(profile))
+    const token = JSON.parse(localStorage.getItem("user_token"))
     
-    // console.log(profile)
+    const [profile, setProfile] = useState(null)
+    
+    useEffect(() => {
+        const getUser = (token) => {
+            axios.get("http://localhost:3001/api/users/me", {
+                headers : {
+                    "Authorization" : `Bearer ${token}`
+                }
+            })
+            .then(response => {
+                setProfile(response.data)
+            })
+            .then(err => console.log(err))
+        }
+        getUser(token, setProfile)
+    },[])
+    
+    console.log(profile)
+    
     return (
         <Router>
             <div className="App">

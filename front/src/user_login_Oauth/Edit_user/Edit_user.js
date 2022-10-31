@@ -7,6 +7,8 @@ export default function Edit_user({setvalue, setProfile,profile}) {
     
     const [images, setImages] = useState(profile.avatar_url)
     
+    let image_data;
+
     const test = () => {
         const input = document.querySelector("input")
         input.click()
@@ -16,6 +18,7 @@ export default function Edit_user({setvalue, setProfile,profile}) {
     const change = (e) => {
         console.log(e.target.files)
         setImages(URL.createObjectURL(e.target.files[0]))
+        image_data = e.target.files[0]
     }
     
     const saveChanges = () => {
@@ -40,6 +43,19 @@ export default function Edit_user({setvalue, setProfile,profile}) {
                 }
             })
             .then(res => console.log(res))
+            .catch(err => console.log(err))
+        }
+
+        if (profile.avatar_url != images) {
+            const formData = new FormData()
+            formData.append("file",images)
+            axios.patch("http://localhost:3001/api/users/update-profile", formData,{
+                headers : {
+                    Authorization : `Bearer ${JSON.parse(localStorage.getItem("user_token"))}`,
+                    content_type : "multipart/form-data"
+                }
+            })
+            .then(response => console.log(response))        
             .catch(err => console.log(err))
         }
 
