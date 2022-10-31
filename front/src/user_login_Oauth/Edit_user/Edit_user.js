@@ -14,48 +14,49 @@ export default function Edit_user({setvalue, setProfile,profile}) {
         input.click()
         console.log(profile)
     }
-
+    
     const change = (e) => {
         console.log(e.target.files)
         setImages(URL.createObjectURL(e.target.files[0]))
         image_data = e.target.files[0]
+        console.log(image_data)
     }
     
     const saveChanges = () => {
         
         const inputValue = document.querySelector(".display_name_input")
 
-        const new_name = inputValue.value ? inputValue.value : profile.display_name
+        const new_name = inputValue.value ? inputValue.value : profile.user_name
 
+        console.log(new_name)
 
         setProfile({...profile,
-            display_name : new_name,
+            user_name : new_name,
             avatar_url : images,
             token : JSON.parse(localStorage.getItem("user_token"))
         })
 
         if (profile.display_name != new_name) {
             axios.patch("http://localhost:3001/api/users/update-profile", {
-                user_name : inputValue.value,
+                user_name : new_name,
             }, {
                 headers : {
                     Authorization : `Bearer ${JSON.parse(localStorage.getItem("user_token"))}`
                 }
             })
-            .then(res => console.log(res))
+            .then(res => console.log(res.data))
             .catch(err => console.log(err))
         }
 
         if (profile.avatar_url != images) {
             const formData = new FormData()
-            formData.append("file",images)
-            axios.patch("http://localhost:3001/api/users/update-profile", formData,{
+            formData.append("file", image_data)
+            axios.patch("http://localhost:3001/api/users/update-profile", formData, {
                 headers : {
                     Authorization : `Bearer ${JSON.parse(localStorage.getItem("user_token"))}`,
-                    content_type : "multipart/form-data"
-                }
+                },
             })
-            .then(response => console.log(response))        
+            .then(response => console.log(response))
             .catch(err => console.log(err))
         }
 

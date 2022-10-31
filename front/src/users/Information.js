@@ -28,7 +28,7 @@ export default function Information({ profile, setProfile }) {
         <div className="Information">
             <div className="_info">
                 <img src={profile.avatar_url} alt="" className="image_profile"/>
-                <div>{profile.display_name}</div>
+                <div>{profile.user_name}</div>
             </div>
             <div className="joindate_friends">
                 <div className="join_date">

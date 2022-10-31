@@ -12,9 +12,10 @@ import axios from "axios";
 function App() {
     const [show, setshow] = useState(false)
     
+    const [profile, setProfile] = useState(null)
+    
     const token = JSON.parse(localStorage.getItem("user_token"))
     
-    const [profile, setProfile] = useState(null)
     
     useEffect(() => {
         const getUser = (token) => {
@@ -30,8 +31,6 @@ function App() {
         }
         getUser(token, setProfile)
     },[])
-    
-    console.log(profile)
     
     return (
         <Router>

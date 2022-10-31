@@ -8,7 +8,6 @@ import { Link } from "react-router-dom"
 function Navbar({profile, setProfile, setshow}) {
 
     const logOut = () => {
-        localStorage.removeItem("login_data")
         localStorage.removeItem("user_token")
         setProfile(null)
     }
@@ -25,7 +24,7 @@ function Navbar({profile, setProfile, setshow}) {
             </section> : <section className='navBar_options'></section>}
             {profile ? <section className="userName">
                     <FontAwesomeIcon icon={faBell} className="fabell"/>
-                    <div>{profile.display_name}</div>
+                    <div>{profile.user_name}</div>
                     {   profile.avatar_url ?
                             <img className='profile_picture' src={profile.avatar_url} alt="" />
                             : null
