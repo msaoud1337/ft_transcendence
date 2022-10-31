@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCakeCandles} from "@fortawesome/free-solid-svg-icons"
 import {faUserGroup} from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react";
-import Edit_user from "./Edit_user/Edit_user";
+import Edit_user from "../user_login_Oauth/Edit_user/Edit_user";
 import profil from "../images/profil.svg"
 
 

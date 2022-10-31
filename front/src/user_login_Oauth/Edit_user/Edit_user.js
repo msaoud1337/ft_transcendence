@@ -19,23 +19,32 @@ export default function Edit_user({setvalue, setProfile,profile}) {
     }
     
     const saveChanges = () => {
+        
         const inputValue = document.querySelector(".display_name_input")
+
+        const new_name = inputValue.value ? inputValue.value : profile.display_name
+
+
         setProfile({...profile,
-            display_name : inputValue.value ? inputValue.value : profile.display_name, 
+            display_name : new_name,
             avatar_url : images,
             token : JSON.parse(localStorage.getItem("user_token"))
         })
-        
-        axios.patch("http://localhost:3001/api/users/update-profile", {
-            user_name : inputValue.value,
-        }, {
-            headers : {
-                Authorization : `Bearer ${JSON.parse(localStorage.getItem("user_token"))}`
-            }
-        })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
 
+        if (profile.display_name != new_name) {
+            axios.patch("http://localhost:3001/api/users/update-profile", {
+                user_name : inputValue.value,
+            }, {
+                headers : {
+                    Authorization : `Bearer ${JSON.parse(localStorage.getItem("user_token"))}`
+                }
+            })
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+        }
+
+        if (images != profile.avatar_url)
+            console.log("image changed !!")
         setvalue() // we close the tab when some data changes
     }
     
