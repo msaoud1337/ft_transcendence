@@ -189,19 +189,42 @@
 .all_user_container{
     height: 100%;
     width: 100%;
-    background-color: wheat;
     display: flex;
-    
+    padding-top: 10rem;
 }
 
 .all_users_section_1 {
     height: 100%;
-    width: 35%;
-    padding-left: 5rem;
+    width: 30%;
+    padding: 5rem 5rem 0 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-end;
 }
+
+.manage_user_icons{
+    height: 5rem;
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 1rem;
+    border: gray 0.2rem solid;
+}
+
 
 .all_users_section_2 {
     height: 100%;
-    width: 65%;
-    background-color:#0D0C19;
+    width: 70%;
+}
+
+.hv {
+    height: 100%;
+    color: aliceblue;
+    background-color: aliceblue;
+    width: 0.1rem;
 }
