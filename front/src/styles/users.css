@@ -220,6 +220,12 @@
 .all_users_section_2 {
     height: 100%;
     width: 70%;
+    padding-left: 5rem;
+    padding-top: 2rem;
+    display: flex;
+    gap: 2 rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .hv {
@@ -227,4 +233,53 @@
     color: aliceblue;
     background-color: aliceblue;
     width: 0.1rem;
+}
+
+
+.user_cart_container {
+    height: 40%;
+    width: 22.5%;
+    border-radius: 1rem;
+    background-color: #16152B;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    gap: 3rem;
+}
+
+.user_cart_container img{
+    height: 50%;
+    width: 70%;
+    border-radius: 50%;
+}
+
+.user_cart_container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.user_cart_container div button {
+    width: 80%;
+    height: 3rem;
+}
+
+.user_cart_add {
+    border-radius: 1rem;
+    background-color: #0D0C19;
+    border: solid 0.2rem gray;
+}
+
+.user_cart_block {
+    border-radius: 1rem;
+    color: #0D0C19;
+    background-color: gray;
+}
+
+.user_cart_container p {
+    font-size: 2rem;
 }

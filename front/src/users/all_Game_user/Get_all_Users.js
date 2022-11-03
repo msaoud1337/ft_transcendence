@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Manage_user from './Manage_user'
+import UserCart from './UserCart'
 
 export default function Get_all_Users() {
 
@@ -46,13 +47,16 @@ export default function Get_all_Users() {
     {users && console.log("users")}
     {friend && console.log("friend")}
     {Blocked && console.log("blocked")}
-    
+
+    console.log(allUser)
     return (
         <div className='all_user_container'>
             <Manage_user renderAllUser={renderAllUser} renderBlocked={renderBlocked} renderFriends={renderFriends}/>
             <hv className="hv"></hv>
             <div className='all_users_section_2'>
-                <div></div>
+                {allUser && allUser.map(data => {
+                    return(<UserCart data={data}/>)
+                })}
             </div>
         </div>
     )
