@@ -4,6 +4,8 @@ import {faBell, faArrowRightFromBracket} from '@fortawesome/free-solid-svg-icons
 import Image from "../images/1.png"
 import Image2 from "../images/2.png"
 import { Link } from "react-router-dom"
+import { DataProvider } from '../context/Context'
+import { useContext } from 'react'
 
 function Navbar({profile, setProfile, setshow}) {
 
@@ -12,6 +14,9 @@ function Navbar({profile, setProfile, setshow}) {
         setProfile(null)
     }
     
+    // const [fakeData, setfakeData] = useContext(DataProvider)
+
+    // console.log(fakeData)
     return (
         <div className="navBar">
             <img className="pong" src={Image2} alt=""/>
@@ -28,7 +33,7 @@ function Navbar({profile, setProfile, setshow}) {
                     {   profile.avatar_url ?
                             <img className='profile_picture' src={profile.avatar_url} alt="" />
                             : null
-                    }
+                        }
                 <FontAwesomeIcon icon={faArrowRightFromBracket} onClick={logOut} />
                 </section>
             : <button className='sign_up' onClick={() => setshow(true)}>Sign up</button>}

@@ -5,6 +5,7 @@ import "./styles/users.css"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Navbar from "./home/Navbar.js";
 import axios from "axios";
+import Context from "./context/Context.js";
 
 
 
@@ -15,8 +16,7 @@ function App() {
     const [profile, setProfile] = useState(null)
     
     const token = JSON.parse(localStorage.getItem("user_token"))
-    
-    
+      
     useEffect(() => {
         const getUser = (token) => {
             axios.get("http://localhost:3001/api/users/me", {
@@ -35,7 +35,9 @@ function App() {
     return (
         <Router>
             <div className="App">
-                <Navbar profile={profile} setProfile={setProfile} setshow={setshow} />
+                <Context>
+                    <Navbar profile={profile} setProfile={setProfile} setshow={setshow} />
+                </Context>
                 <Switch>
                     <Route exact path="/">
                         <Home show={show} setshow={setshow} profile={profile} setProfile={setProfile} />

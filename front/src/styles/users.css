@@ -49,6 +49,8 @@
 
 .See_all {
     font-size: 1rem;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 
@@ -170,4 +172,36 @@
 .input_change {
     border: none;
     color: #0711D9;
+}
+
+.see_all_container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.right_direction {
+    height: 1rem;
+    cursor: pointer;
+}
+
+
+.all_user_container{
+    height: 100%;
+    width: 100%;
+    background-color: wheat;
+    display: flex;
+    
+}
+
+.all_users_section_1 {
+    height: 100%;
+    width: 35%;
+    padding-left: 5rem;
+}
+
+.all_users_section_2 {
+    height: 100%;
+    width: 65%;
+    background-color:#0D0C19;
 }

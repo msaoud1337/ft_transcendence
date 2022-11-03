@@ -12,14 +12,12 @@ export default function Edit_user({setvalue, setProfile,profile}) {
     const test = () => {
         const input = document.querySelector("input")
         input.click()
-        console.log(profile)
     }
     
     const change = (e) => {
         console.log(e.target.files)
         setImages(URL.createObjectURL(e.target.files[0]))
         image_data = e.target.files[0]
-        console.log(image_data)
     }
     
     const saveChanges = () => {
@@ -36,7 +34,8 @@ export default function Edit_user({setvalue, setProfile,profile}) {
             token : JSON.parse(localStorage.getItem("user_token"))
         })
 
-        if (profile.display_name != new_name) {
+        if (profile.display_name !== new_name) {
+            console.log("sending new name to backEnd")
             axios.patch("http://localhost:3001/api/users/update-profile", {
                 user_name : new_name,
             }, {
@@ -48,7 +47,8 @@ export default function Edit_user({setvalue, setProfile,profile}) {
             .catch(err => console.log(err))
         }
 
-        if (profile.avatar_url != images) {
+        if (profile.avatar_url !== images) {
+            console.log("send  new image to backEnd")
             const formData = new FormData()
             formData.append("file", image_data)
             axios.patch("http://localhost:3001/api/users/update-profile", formData, {
@@ -59,9 +59,6 @@ export default function Edit_user({setvalue, setProfile,profile}) {
             .then(response => console.log(response))
             .catch(err => console.log(err))
         }
-
-        if (images != profile.avatar_url)
-            console.log("image changed !!")
         setvalue() // we close the tab when some data changes
     }
     

@@ -1,11 +1,11 @@
-import Bar from "./Bar"
+import Bar from "./all_Game_user/AllUserData"
 import line from "../images/Line.svg"
 
 
-export default function Friends() {
+export default function Friends({setRender}) {
     return (
         <div>
-            <Bar name="Friends" />
+            <Bar name="Friends" setRender={setRender}/>
             <img src={line} alt="" />
         </div>
     )
