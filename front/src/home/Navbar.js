@@ -6,6 +6,7 @@ import Image2 from "../images/2.png"
 import { Link } from "react-router-dom"
 import { DataProvider } from '../context/Context'
 import { useContext } from 'react'
+import image from "../images/default_profile.png"
 
 function Navbar({profile, setProfile, setshow}) {
 
@@ -13,10 +14,7 @@ function Navbar({profile, setProfile, setshow}) {
         localStorage.removeItem("user_token")
         setProfile(null)
     }
-    
-    // const [fakeData, setfakeData] = useContext(DataProvider)
 
-    // console.log(fakeData)
     return (
         <div className="navBar">
             <img className="pong" src={Image2} alt=""/>
@@ -30,10 +28,7 @@ function Navbar({profile, setProfile, setshow}) {
             {profile ? <section className="userName">
                     <FontAwesomeIcon icon={faBell} className="fabell"/>
                     <div>{profile.user_name}</div>
-                    {   profile.avatar_url ?
-                            <img className='profile_picture' src={profile.avatar_url} alt="" />
-                            : null
-                        }
+                    <img className='profile_picture' src={profile.avatar_url ? profile.avatar_url : image} alt="" />
                 <FontAwesomeIcon icon={faArrowRightFromBracket} onClick={logOut} />
                 </section>
             : <button className='sign_up' onClick={() => setshow(true)}>Sign up</button>}

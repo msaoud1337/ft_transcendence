@@ -3,44 +3,48 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Manage_user from './Manage_user'
 import UserCart from './UserCart'
+import Getfriends from './GetFriends'
+import GetBlocked from './GetBlocked'
 
-export default function Get_all_Users() {
+
+export default function Get_all_Users({profile}) {
 
     const [allUser , setAllUser] = useState(null)
 
     const [users , setusers] = useState(true)
-    const [friend, setFrirend] = useState(false)
+    const [friend, setFriends] = useState(false)
     const [Blocked, setBlocked] = useState(false)
-    
+
     const token = JSON.parse(localStorage.getItem("user_token"))
 
-
-    const Get_all_Users = () => {
-        axios.get("http://localhost:3001/api/users/all_users",{
+    {profile && axios.get("http://localhost:3001/api/users/all_users")
+        .then(res => console.log(res.data)
+        .catch(err => console.log(err))
+    )}
+        
+    axios.get("http://localhost:3001/api/users/friends", {
+        headers : {
             Authorization : `Bearer ${token}`
-        })
-        .then(res => setAllUser(res.data))
-    }
-
-    useEffect(() => {
-        Get_all_Users()
-    },[])
+        }
+    })
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err))
 
     const renderFriends = () => {
-        setFrirend(true)
+        setFriends(true)
         setBlocked(false)
         setusers(false)
     }
     
     const renderBlocked = () => {
         setBlocked(true)
-        setFrirend(false)
+        setFriends(false)
         setusers(false)
     }
     
     const renderAllUser = () => {
         setusers(true)
-        setFrirend(false)
+        setFriends(false)
         setBlocked(false)
     }
 
@@ -48,14 +52,24 @@ export default function Get_all_Users() {
     {friend && console.log("friend")}
     {Blocked && console.log("blocked")}
 
-    console.log(allUser)
+
     return (
         <div className='all_user_container'>
-            <Manage_user renderAllUser={renderAllUser} renderBlocked={renderBlocked} renderFriends={renderFriends}/>
+            <Manage_user 
+                renderAllUser={renderAllUser} 
+                renderBlocked={renderBlocked} 
+                renderFriends={renderFriends}
+                users={users}
+                friend={friend}
+                Blocked={Blocked}
+                numberOfUsers={(users && allUser) ? allUser.length : null}
+            />
             <hv className="hv"></hv>
             <div className='all_users_section_2'>
-                {allUser && allUser.map(data => {
-                    return(<UserCart data={data}/>)
+                {friend && <Getfriends/>}
+                {Blocked && <GetBlocked />}
+                {(allUser && users) && allUser.map(user => {
+                    return (<UserCart data={user} value_1="Add_friend" value_2="Block"/>)
                 })}
             </div>
         </div>

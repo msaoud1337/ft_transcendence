@@ -15,9 +15,9 @@ export default function Edit_user({setvalue, setProfile,profile}) {
     }
     
     const change = (e) => {
-        console.log(e.target.files)
-        setImages(URL.createObjectURL(e.target.files[0]))
         image_data = e.target.files[0]
+        setImages(URL.createObjectURL(e.target.files[0]))
+        console.log(e.target.files[0])
     }
     
     const saveChanges = () => {
@@ -31,11 +31,9 @@ export default function Edit_user({setvalue, setProfile,profile}) {
         setProfile({...profile,
             user_name : new_name,
             avatar_url : images,
-            token : JSON.parse(localStorage.getItem("user_token"))
         })
 
-        if (profile.display_name !== new_name) {
-            console.log("sending new name to backEnd")
+        {(profile.display_name === new_name) &&
             axios.patch("http://localhost:3001/api/users/update-profile", {
                 user_name : new_name,
             }, {
@@ -48,9 +46,8 @@ export default function Edit_user({setvalue, setProfile,profile}) {
         }
 
         if (profile.avatar_url !== images) {
-            console.log("send  new image to backEnd")
             const formData = new FormData()
-            formData.append("file", image_data)
+            formData.append("file", images)
             axios.patch("http://localhost:3001/api/users/update-profile", formData, {
                 headers : {
                     Authorization : `Bearer ${JSON.parse(localStorage.getItem("user_token"))}`,

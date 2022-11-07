@@ -24,7 +24,7 @@ export default function Users({ profile , setProfile }) {
                         <Friends setRender={setRender}/>
                     </div>
             </div>
-            :  <Get_all_Users />
+            :  <Get_all_Users profile={profile}/>
             }
         </div>
     )

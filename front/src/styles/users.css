@@ -216,16 +216,30 @@
     border: gray 0.2rem solid;
 }
 
+.manage_user_icons_active{
+    height: 5rem;
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 1rem;
+    border: gray 0.2rem solid;
+    background-color: #0711D9;
+}
+
 
 .all_users_section_2 {
     height: 100%;
     width: 70%;
     padding-left: 5rem;
     padding-top: 2rem;
+    padding-right: 5rem;
     display: flex;
-    gap: 2 rem;
+    gap: 2rem;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .hv {

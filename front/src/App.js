@@ -6,10 +6,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Navbar from "./home/Navbar.js";
 import axios from "axios";
 import Context from "./context/Context.js";
-
-
-
-
+import image from "./images/default_profile.png"
+ 
 function App() {
     const [show, setshow] = useState(false)
     
@@ -31,6 +29,8 @@ function App() {
         }
         getUser(token, setProfile)
     },[])
+    
+    {profile && !profile.avatar_url && setProfile({...profile, avatar_url : image})}
     
     return (
         <Router>
