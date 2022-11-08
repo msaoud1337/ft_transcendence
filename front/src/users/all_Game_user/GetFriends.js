@@ -1,7 +1,10 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import UserCart from "./UserCart"
-export default function Getfriends(){
+
+
+
+export default function Getfriends(obj){
             
     const token = JSON.parse(localStorage.getItem("user_token"))
 
@@ -13,7 +16,10 @@ export default function Getfriends(){
                 Authorization : `Bearer ${token}`
             }
         })
-        .then(res => setFriends(res.data))
+        .then(res => {
+            setFriends(res.data)
+            obj.setparticuliereData({...obj.particuliereData, friendNbr : res.data.length})    
+        })
         .catch(err => console.log(err))
     }
 
@@ -22,10 +28,11 @@ export default function Getfriends(){
     },[])
 
     return (
-    <div className="all_user_section_1">
-        {friend && friend.map(user => {
-            return (<UserCart data={user} value_1="remove friend" value_2="Block"/>)
+    <>
+        {friend && friend.map((user, i) => {
+            return (<UserCart key={i} data={user} value_1="remove friend" value_2="Block"/>)
         })}
-    </div>
+        {!friend && <div>You have no friends yet</div>}
+    </>
     )
 }

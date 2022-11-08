@@ -10,48 +10,31 @@ import GetBlocked from './GetBlocked'
 export default function Get_all_Users({profile}) {
 
     const [allUser , setAllUser] = useState(null)
+    const [userStat, setUserStat] = useState("all_users")
+    const [particuliereData, setparticuliereData] = useState({})
 
-    const [users , setusers] = useState(true)
-    const [friend, setFriends] = useState(false)
-    const [Blocked, setBlocked] = useState(false)
+    useEffect(() => {
 
-    const token = JSON.parse(localStorage.getItem("user_token"))
-
-    {profile && axios.get("http://localhost:3001/api/users/all_users")
-        .then(res => console.log(res.data)
+        axios.get("http://localhost:3001/api/users/all_users")
+        .then(res => {
+            setAllUser(res.data)
+            setparticuliereData({...particuliereData, allUserNbr : res.data.length})
+        })
         .catch(err => console.log(err))
-    )}
-        
-    axios.get("http://localhost:3001/api/users/friends", {
-        headers : {
-            Authorization : `Bearer ${token}`
-        }
-    })
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err))
+
+    },[])
 
     const renderFriends = () => {
-        setFriends(true)
-        setBlocked(false)
-        setusers(false)
+        setUserStat("friends")
     }
     
     const renderBlocked = () => {
-        setBlocked(true)
-        setFriends(false)
-        setusers(false)
+        setUserStat("blocked_users")
     }
     
     const renderAllUser = () => {
-        setusers(true)
-        setFriends(false)
-        setBlocked(false)
+        setUserStat("all_users")
     }
-
-    {users && console.log("users")}
-    {friend && console.log("friend")}
-    {Blocked && console.log("blocked")}
-
 
     return (
         <div className='all_user_container'>
@@ -59,17 +42,17 @@ export default function Get_all_Users({profile}) {
                 renderAllUser={renderAllUser} 
                 renderBlocked={renderBlocked} 
                 renderFriends={renderFriends}
-                users={users}
-                friend={friend}
-                Blocked={Blocked}
-                numberOfUsers={(users && allUser) ? allUser.length : null}
+                userStat={userStat}
+                allUserNbr={particuliereData.allUserNbr ? particuliereData.allUserNbr : 0}
+                FriendNbr={particuliereData.friendNbr ? particuliereData.friendNbr : "..."}
+                // BlockedNbr={}
             />
             <hv className="hv"></hv>
             <div className='all_users_section_2'>
-                {friend && <Getfriends/>}
-                {Blocked && <GetBlocked />}
-                {(allUser && users) && allUser.map(user => {
-                    return (<UserCart data={user} value_1="Add_friend" value_2="Block"/>)
+                {userStat === "friends" && <Getfriends particuliereData={particuliereData} setparticuliereData={setparticuliereData}/>}
+                {userStat === "blocked_users" && <GetBlocked particuliereData={particuliereData} setparticuliereData={setparticuliereData} />}
+                {(allUser && userStat === "all_users") && allUser.map((user, i) => {
+                    return (<UserCart key={i} data={user} value_1="Add_friend" value_2="Block"/>)
                 })}
             </div>
         </div>
