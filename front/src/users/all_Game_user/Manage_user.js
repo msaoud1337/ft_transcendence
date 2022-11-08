@@ -15,7 +15,7 @@ export default function Manage_user(obj) {
 			</div>
 			<div className={obj.userStat === "blocked_users" ? 'manage_user_icons_active' : 'manage_user_icons'} onClick={obj.renderBlocked}>
 				<FontAwesomeIcon icon={faUserSlash}/>
-				<p>Blocked Users (0)</p>
+				<p>Blocked Users ({obj.BlockedNbr})</p>
 			</div>
 		</div>
 	)

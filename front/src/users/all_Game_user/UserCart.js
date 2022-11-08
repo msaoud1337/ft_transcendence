@@ -50,7 +50,11 @@ export default function UserCart ({data, value_1, value_2}) {
                     onClick={value_1 === "Add_friend" ? sendFriendRequest : removeFriend}>
                     {value_1}
                 </button>
-                <button className="user_cart_block" onClick={BlockUser}>{value_2}</button>
+                <button 
+                    className="user_cart_block" 
+                    onClick={BlockUser}>
+                        {value_2}
+                </button>
             </div>
         </div>
     )
