@@ -263,6 +263,21 @@
     gap: 3rem;
 }
 
+@media screen and (max-width : 1200px)
+{
+    .user_cart_container {
+        width: 33%;
+    } 
+        
+}
+
+@media screen and (max-width : 1000px)
+{
+    .user_cart_container {
+        width: 40%;
+    }         
+}
+
 .user_cart_container img{
     height: 50%;
     width: 70%;
