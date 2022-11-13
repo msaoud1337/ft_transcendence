@@ -33,17 +33,17 @@ export default function Edit_user({setvalue, setProfile,profile}) {
             avatar_url : images,
         })
 
-        {(profile.display_name === new_name) &&
-            axios.patch("http://localhost:3001/api/users/update-profile", {
-                user_name : new_name,
-            }, {
-                headers : {
-                    Authorization : `Bearer ${JSON.parse(localStorage.getItem("user_token"))}`
-                }
-            })
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err))
-        }
+        // {(profile.display_name === new_name) &&
+        //     axios.patch("http://localhost:3001/api/users/update-profile", {
+        //         user_name : new_name,
+        //     }, {
+        //         headers : {
+        //             Authorization : `Bearer ${JSON.parse(localStorage.getItem("user_token"))}`
+        //         }
+        //     })
+        //     .then(res => console.log(res.data))
+        //     .catch(err => console.log(err))
+        // }
 
         if (profile.avatar_url !== images) {
             const formData = new FormData()

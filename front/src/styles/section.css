@@ -47,6 +47,14 @@ html {
     margin-right: 18rem;
 }
 
+.root_underlign_black {
+    text-decoration: none;
+}
+
+.root_underlign_color {
+    text-decoration: underline #05F2DB 0.3rem;
+}
+
 .userName {
     color: #C4C4C4;
     font-size: 2rem;
@@ -58,8 +66,10 @@ html {
     align-items: center;
 }
 
-.fabell {
-    color: #05F2DB;
+.fa-bell {
+    /* background-color: #05F2DB;
+    color: #05F2DB; */
+    cursor: pointer;
 }
 
 .section_1 {
@@ -117,4 +127,10 @@ html {
 body::-webkit-scrollbar {
     width: 1px;
     /* appearance: visible; */
+}
+
+.notification_comp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
