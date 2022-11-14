@@ -66,3 +66,15 @@
 .edit_data_buttons .save {
     color: #16152B;
 }
+
+.test_prob {
+    color: red;
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.signup_succes {
+    color: green;
+    font-size: 1.1rem;
+    font-weight: 800;
+}
