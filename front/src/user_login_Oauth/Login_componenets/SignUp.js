@@ -1,45 +1,31 @@
 import Login_user from "../Login_user";
 import axios from "axios"
+import { useState } from "react";
 
 
-export default function SignUp({profile, setProfile, sign}) {
+export default function SignUp({profile, setProfile, sign, setsignup_succes}) {
 
-    const signUpValue = {
-        name : "",
-        password : "",
-        confirmPassword : "",
-    }
-
-    const userName = (e) => {
-        signUpValue.name = e.target.value
-    }
-
-    const password = (e) => {
-        signUpValue.password = e.target.value
-    }
-
-    const confirmPassword = (e) => {
-        signUpValue.confirmPassword = e.target.value
-    }
+    const [signup_Value, setsignup_Value] = useState(false)
 
     const confirmData = () => {
-        const data = {
-            "user_name": "amine",
-            "display_name": "samine",
-            "email": "samine@1337.com",
-        }
-
-        console.log(data)
-        axios.get("http://localhost:3001/api/users/me", {
-            headers : {
-                "Authorization" : `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzYsInVzZXJfbmFtZSI6ImFtaW5lIiwiZW1haWwiOiJzYW1pbmVAMTMzNy5jb20iLCJpYXQiOjE2NjY0ODMwODgsImV4cCI6MTY2OTA3NTA4OH0.YnzqK53WhlztTUp7poyuWjWbItGu0g9-lHLfKl_NhXw`
-            }
+        const user_name = document.querySelector(".user_name")
+        const password = document.querySelector(".password")
+        const password_confirm = document.querySelector(".password_confirm")
+   
+        axios.post("http://localhost:3001/api/auth/signup", {
+            "user_name" : user_name.value,
+            "display_name" : user_name.value.substring(0.6),
+            "email" : `${user_name.value}@1337.com`
         })
         .then(response => {
-            console.log(response)
-            setProfile(response.data)
-            console.log("data changed in the profile")
-            localStorage.setItem("login_data", JSON.stringify(response.data))
+            if (response && response.status === 200) {
+                sign()
+                setsignup_succes(true)
+            }
+        })
+        .catch(err => {
+            setsignup_Value(true)
+            console.log("test")
         })
     }
 
@@ -51,11 +37,12 @@ export default function SignUp({profile, setProfile, sign}) {
             </div>
              <div className="form-seperator">
                 <span>or</span>
+                {signup_Value && <div className="test_prob">userName or password incorrect check again !!</div>}
             </div>
             <div className="input_containers">
-                <input placeholder="Username / Email" onChange={userName}/>
-                <input type="password" placeholder="password" onChange={password}/>
-                <input type="password" placeholder="Confirm your password" onChange={confirmPassword}/>
+                <input placeholder="Username / Email" className="user_name"/>
+                <input type="password" placeholder="password" className="password"/>
+                <input type="password" placeholder="Confirm your password" className="password_confirm"/>
                 <div className="Contunie_container">
                     <button className="Contunie_" onClick={confirmData}>Continue</button>
                 </div>

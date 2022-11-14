@@ -1,6 +1,5 @@
 import pong from "../images/pingpong.png"
 import pong2 from "../images/3.png"
-import Navbar from "./Navbar";
 import "../styles/section.css"
 
 function Section({setshow}) {

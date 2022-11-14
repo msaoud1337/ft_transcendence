@@ -5,7 +5,7 @@ export default function Result({profile}) {
         <div className="result_container">
             <div className="first_Player">
                 <img src={profile.avatar_url} alt="" className="profileImg_history"/>
-                <div>{profile.display_name}</div>
+                <div>{profile.user_name}</div>
             </div>
             <div className="Result">
                 <p>10</p>
