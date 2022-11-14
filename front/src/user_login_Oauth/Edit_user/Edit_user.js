@@ -26,24 +26,22 @@ export default function Edit_user({setvalue, setProfile,profile}) {
 
         const new_name = inputValue.value ? inputValue.value : profile.user_name
 
-        console.log(new_name)
-
         setProfile({...profile,
             user_name : new_name,
             avatar_url : images,
         })
 
-        // {(profile.display_name === new_name) &&
-        //     axios.patch("http://localhost:3001/api/users/update-profile", {
-        //         user_name : new_name,
-        //     }, {
-        //         headers : {
-        //             Authorization : `Bearer ${JSON.parse(localStorage.getItem("user_token"))}`
-        //         }
-        //     })
-        //     .then(res => console.log(res.data))
-        //     .catch(err => console.log(err))
-        // }
+        {(profile.user_name !== new_name) &&
+            axios.patch("http://localhost:3001/api/users/update-profile", {
+                user_name : new_name,
+            }, {
+                headers : {
+                    Authorization : `Bearer ${JSON.parse(localStorage.getItem("user_token"))}`
+                }
+            })
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
+        }
 
         if (profile.avatar_url !== images) {
             const formData = new FormData()

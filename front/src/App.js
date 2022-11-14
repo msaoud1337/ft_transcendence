@@ -7,6 +7,8 @@ import Navbar from "./Navbar/Navbar.js";
 import axios from "axios";
 import image from "./images/default_profile.png"
 import Notification from "./users/Notification/Notification.js";
+import  useWebSocket, { ReadyState }  from "react-use-websocket";
+
 function App() {
 
     const [show, setshow] = useState(false)
@@ -21,16 +23,14 @@ function App() {
     }
     
     useEffect(() => {
-        
+
         const token = JSON.parse(localStorage.getItem("user_token"))
         axios.get("http://localhost:3001/api/users/me", {
             headers : {
                 "Authorization" : `Bearer ${token}`
             }
         })
-        .then(response => {
-            setProfile(response.data)
-        })
+        .then(response => setProfile(response.data))
         .catch(err => console.log(err))
 
         axios.get("http://localhost:3001/api/users/pending-friends/",{
@@ -40,7 +40,7 @@ function App() {
         })
         .then(response => setNotification(response.data))
         .catch(err => console.log(err))
-    
+
     },[])
     
     {profile && !profile.avatar_url && setProfile({...profile, avatar_url : image})} // adding the default avatar to users
