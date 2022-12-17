@@ -1,4 +1,5 @@
-import { 
+import React from "react";
+import {
     NavbarStyle, 
     LogoStyle,
     StyledRoute,
@@ -7,15 +8,16 @@ import {
     NavbarRightSideContainer,
     UserAvatar
 } from "./Navbar.style";
-import Avatar from "../../assets/profile.svg"
-import Image from "../../assets/Logo.svg"
+import Avatar from "../../assets/svg/profile.svg"
+import Logo from "../../assets/svg/Logo.svg"
 
 const NavbarRightSide = () => {
     return (
         <NavbarRightSideContainer>
+            <div></div>
             <UserName>user_name</UserName>
             <UserAvatar src={Avatar}/>
-        </NavbarRightSideContainer>        
+        </NavbarRightSideContainer>      
 
     )
 }
@@ -31,13 +33,12 @@ const Route = () => {
         </StyledRoute>
     )
 }
-    
-    
-    
+
+
 export default function Navbar() {
     return (
         <NavbarStyle>
-            <LogoStyle src={Image} />
+            <LogoStyle src={Logo} />
             <Route />
             <NavbarRightSide />
         </NavbarStyle>

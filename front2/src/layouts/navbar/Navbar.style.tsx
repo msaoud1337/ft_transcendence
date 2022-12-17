@@ -5,10 +5,11 @@ export const NavbarStyle = styled.div`
     width: 100%;
     height: 10rem;
     background-color: black;
-    padding: 0 9rem;
+    padding: 0 5%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: transparent;
     /* gap : 9rem */
 `
 
@@ -22,17 +23,20 @@ export const StyledRoute = styled.div`
     width: 45%;
     height: 5rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     /* margin-right: 9rem; */
 `
 
 export const RouteElement = styled.div`
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+    font-family: 'Press Start 2P', cursive;
+    /* text-decoration: underline; */
 `
 
 export const UserName = styled.div`
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+    font-family: 'Press Start 2P', cursive;
 `
 
 export const UserAvatar = styled.img`
@@ -42,9 +46,10 @@ export const UserAvatar = styled.img`
 `
 
 export const NavbarRightSideContainer = styled.div`
-    width: 20rem;
+    width: 30rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-right: 1rem;
 `
+
