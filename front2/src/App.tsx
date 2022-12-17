@@ -1,9 +1,14 @@
-import Navbar from './layouts/navbar/Navbar';
+import React from 'react';
+import Home from './Views/Home/Home';
+import SignIn from './Components/SignIn/SignIn';
+import SignUp from './Components/SignUp/SignUp';
 
 function App() {
 	return (
 		<>
-			<Navbar />
+			<Home />
+			{/* <SignIn /> */}
+			<SignUp />
 		</>
 	)
 }
