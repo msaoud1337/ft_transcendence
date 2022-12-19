@@ -3,7 +3,6 @@ import BackGround from "../../assets/svg/Background.svg"
 
 export const HomeStyle = styled.div`
     height: 100vh;
-    background-color: aqua;
     background-image: url(${BackGround});
     background-repeat: no-repeat;
     background-size: 100%;

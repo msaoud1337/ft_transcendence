@@ -33,7 +33,7 @@ export const TextSignIn = styled.div`
     font-size: 1.6rem;
     color: #05F2DB;
     font-family: "Press Start 2P";
-    `
+`
 
 export const UserNameInputs = styled.input`
     height: 3rem;
