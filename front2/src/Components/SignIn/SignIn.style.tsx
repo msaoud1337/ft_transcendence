@@ -78,6 +78,8 @@ export const SignUpRedirect = styled.div`
     font-family: 'Fredoka One', cursive;
     font-size: 1.2rem;
     color: #05F2DB;
+    text-decoration: underline #05F2DB;
+    cursor: pointer;
 `
 
 export const TextContainer = styled.div`

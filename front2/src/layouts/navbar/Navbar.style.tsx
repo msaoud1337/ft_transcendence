@@ -1,6 +1,5 @@
 import styled from "styled-components"
 
-
 export const NavbarStyle = styled.div`
     width: 100%;
     height: 10rem;
@@ -10,13 +9,11 @@ export const NavbarStyle = styled.div`
     align-items: center;
     justify-content: space-between;
     background-color: transparent;
-    /* gap : 9rem */
 `
 
 export const LogoStyle = styled.img`
     height: 4.4rem;
     width: 15rem;
-    /* margin-right: 9rem; */
 `
 
 export const StyledRoute = styled.div`
@@ -25,13 +22,11 @@ export const StyledRoute = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* margin-right: 9rem; */
 `
 
 export const RouteElement = styled.div`
     font-size: 1.4rem;
     font-family: 'Press Start 2P', cursive;
-    /* text-decoration: underline; */
 `
 
 export const UserName = styled.div`
