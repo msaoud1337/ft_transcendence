@@ -12,7 +12,7 @@ import {
     UserNameInputs
 } from "./SignIn.style";
 import Logo from "../../assets/svg/Logo.svg"
-import { SignHide, SignUpFalse, SignUpTrue, SetSignUpconfirmation } from "../../Store/Slices/counterSlice";
+import { SignHide, SignUpFalse, SignUpTrue } from "../../Store/Slices/counterSlice";
 import { useAppDispatch, useAppSelector} from "../../Hooks/Hooks";
 import { SignUpStyle } from "../SignUp/SignUp.style";
 import { SignInRequest, SignUpRequest } from "../../Apis/LoginAPIs/loginApi";
@@ -68,7 +68,7 @@ const SignUpComp = () =>{
 
     if (SignUpComfirm === "all is good"){
         console.log("new user registred")
-        dispatch(SetSignUpconfirmation())
+        dispatch(SignUpFalse())
     }
 
     const SignUp = () => {

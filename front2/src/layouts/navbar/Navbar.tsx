@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     NavbarStyle, 
     LogoStyle,
@@ -10,14 +10,19 @@ import {
 } from "./Navbar.style";
 import Avatar from "../../assets/svg/profile.svg"
 import Logo from "../../assets/svg/Logo.svg"
+import { useAppDispatch, useAppSelector } from "../../Hooks/Hooks";
+import { SignInWithKey } from "../../Apis/LoginAPIs/loginApi";
 
 const NavbarRightSide = () => {
+    const dispatch = useAppDispatch()
+    const UserData = useAppSelector(state => state.counter.UserData)
+
     return (
         <NavbarRightSideContainer>
             <div></div>
-            <UserName>user_name</UserName>
-            <UserAvatar src={Avatar}/>
-        </NavbarRightSideContainer>      
+            <UserName>{UserData?.user_name}</UserName>
+            <UserAvatar src={UserData?.avatar_url}/>
+        </NavbarRightSideContainer>
 
     )
 }
@@ -36,11 +41,22 @@ const Route = () => {
 
 
 export default function Navbar() {
+    const dispatch = useAppDispatch()
+    const UserData = useAppSelector(state => state.counter.UserData)
+	const isUserSigned = useAppSelector(state => state.counter.isUserSigned)
+    
+    useEffect( () => {
+        if (isUserSigned)
+            dispatch(SignInWithKey(null))
+    },[isUserSigned])
+
+    console.log(UserData)
+
     return (
         <NavbarStyle>
             <LogoStyle src={Logo} />
-            <Route />
-            <NavbarRightSide />
+            {UserData ? <Route /> : <></>}
+            {UserData ? <NavbarRightSide /> : <></>}
         </NavbarStyle>
     )
 }

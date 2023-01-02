@@ -9,6 +9,7 @@ export const NavbarStyle = styled.div`
     align-items: center;
     justify-content: space-between;
     background-color: transparent;
+    border-bottom: 0.2rem black solid;
 `
 
 export const LogoStyle = styled.img`

@@ -10,7 +10,7 @@ export type UserDatatypes = {
     user_name : string,
     email : string,
     display_name : string,
-    avatar_ur : string,
+    avatar_url : string,
     is_2fa_enabled : boolean,
     twoFactorAuthSecret : null,
     state : string,

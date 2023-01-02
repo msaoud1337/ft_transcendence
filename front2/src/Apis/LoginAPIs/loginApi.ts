@@ -1,6 +1,5 @@
 import { createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios"
-import { Console } from "console";
 import { UserDatatypes } from "../../Types";
 
 export const SignInRequest = createAsyncThunk(
@@ -10,17 +9,30 @@ export const SignInRequest = createAsyncThunk(
             const User = await axios.post("http://localhost:3001/api/auth/login"
                 ,data
             )
+            localStorage.setItem("UserKey",User.data)
+            return true
+        } catch (error: string | unknown) {
+            return thunkApi.rejectWithValue({
+                message : "Sign In Request failed !"
+            })
+        }
+    }
+)
+
+export const SignInWithKey = createAsyncThunk(
+    "SignInWithKey",
+    async (thunkApi : any) => {
+        try {
             const UserData = await axios.get<UserDatatypes>("http://localhost:3001/api/users/me",
             {
                 headers : {
-                    "Authorization" : `Bearer ${User.data}`
+                    "Authorization" : `Bearer ${localStorage.getItem("UserKey")}`
                 }
             })
-            console.log(UserData.data)
             return UserData.data
-        } catch (error: string | unknown){
+        } catch (error : string | unknown) {
             return thunkApi.rejectWithValue({
-                message : "Sign In Request failed"
+                message : "Getting userData using key failed !"
             })
         }
     }
@@ -38,7 +50,6 @@ export const SignUpRequest = createAsyncThunk(
                 "email" : `${data.user_name}@1337.ma`
             }
             )
-            console.log(User)
             return User.data
         } catch (error : string | unknown){
             return thunkApi.rejectWithValue({

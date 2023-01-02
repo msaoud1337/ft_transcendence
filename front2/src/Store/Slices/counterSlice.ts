@@ -1,8 +1,11 @@
 import { createSlice} from '@reduxjs/toolkit'
 import type { RootState } from '../Store'
 import {UserDatatypes} from "../../Types"
-import { SignInRequest } from "../../Apis/LoginAPIs/loginApi"
-import { SignUpRequest } from '../../Apis/LoginAPIs/loginApi'
+import { 
+  SignInRequest,
+  SignUpRequest,
+  SignInWithKey
+} from "../../Apis/LoginAPIs/loginApi"
 
 // Define a type for the slice state
 interface CounterState {
@@ -10,24 +13,28 @@ interface CounterState {
   SignUp: boolean,
   SignInstatus: "loading" | "idle",
   SignInerror: string | null,
-  list: UserDatatypes[],
-  UserData: null | object,
   SignUpStatus: "loading" | "idle",
   SignUpError: string | null,
-	SignUpConfirmation : null | string
+	SignUpConfirmation : null | string,
+  SignInwithKeyState: "loading" | "idle",
+  SignInWitKeyError: null | string,
+  UserData : null | UserDatatypes,
+  isUserSigned : boolean,
 }
 
 // Define the initial state using that type
 const initialState: CounterState = {
   PopUpSign: false,
   SignUp: false,
-  list: [],
   SignInerror: null,
   SignInstatus: "idle",
-  UserData: null,
   SignUpStatus: "idle",
   SignUpError: null,
 	SignUpConfirmation: null,
+  SignInwithKeyState: "idle",
+  SignInWitKeyError: null,
+  UserData : null,
+  isUserSigned : false,
 }
 
 export const counterSlice = createSlice({
@@ -47,9 +54,6 @@ export const counterSlice = createSlice({
     SignUpFalse : (state) => {
       state.SignUp = false
     },
-		SetSignUpconfirmation : (state) => {
-			state.SignUpConfirmation = null
-		}
     // Use the PayloadAction type to declare the contents of `action.payload`
     // incrementByAmount: (state, action: PayloadAction<number>) => {
     // },
@@ -60,9 +64,11 @@ export const counterSlice = createSlice({
       state.SignInerror = null;
     });
     builder.addCase(SignInRequest.fulfilled, 
-      (state, { payload } : any) => {
-      // state.list.push(...payload);
-      state.UserData = payload;
+      (state, {payload} : any) => {
+      if (payload){
+        console.log(payload)
+        state.isUserSigned = payload
+      }
       state.SignInstatus = "idle";
     });
     builder.addCase(SignInRequest.rejected, 
@@ -78,8 +84,9 @@ export const counterSlice = createSlice({
     })
     builder.addCase(SignUpRequest.fulfilled,
       (state, {payload} : any) => {
+        if (payload)
+				  state.SignUpConfirmation = payload
 				state.SignUpStatus = "idle"
-				state.SignUpConfirmation = payload
       })
 		builder.addCase(SignUpRequest.rejected, 
 			(state, {payload} : any) => {
@@ -87,7 +94,25 @@ export const counterSlice = createSlice({
 					state.SignUpError = payload.message
 				state.SignUpStatus = "idle"
 			})
-
+    
+    builder.addCase(SignInWithKey.pending, (state) => {
+      state.SignInwithKeyState = "loading"
+      state.SignInWitKeyError = null;
+      console.log("Hi")
+    })
+    builder.addCase(SignInWithKey.fulfilled, 
+      (state, {payload} : any) => {
+        if (payload){
+          console.log("from the payload ",payload)
+          state.UserData = payload
+        }
+        state.SignInwithKeyState = "idle"
+    })
+    builder.addCase(SignInWithKey.rejected, (state, {payload} : any) => {
+      if (payload)
+        state.SignInWitKeyError = payload.message
+      state.SignInwithKeyState = "idle"
+    })
   }
 })
 
@@ -96,7 +121,6 @@ export const {
   SignUpFalse, 
   SignHide, 
   SignDisplay,
-	SetSignUpconfirmation,
   // incrementByAmount 
 } = counterSlice.actions
 
