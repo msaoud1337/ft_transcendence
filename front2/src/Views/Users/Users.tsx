@@ -2,6 +2,7 @@ import React from "react";
 import { 
     ButtonEditProfile, 
     DateContainer, 
+    EditProfileText, 
     FriendsNbr, 
     HistoryCompStyle, 
     HistoryData, 
@@ -24,12 +25,24 @@ import {
 } from "./Users.style";
 import { TitlteTypes } from "../../Types";
 import Profile from "../../assets/svg/profile.svg"
+import Navbar from "../../layouts/navbar/Navbar";
+import GroupIcon from '@mui/icons-material/Group';
+import CelebrationIcon from '@mui/icons-material/Celebration';
+import Button from '@mui/material/Button';
+import { PlayButton } from "../Home/Home.style";
+import { EditModal } from "./EditProfile/EditProfile";
 
 const JoineDateAndFriends = () => {
     return (
         <DateContainer>
-            <JoiningDate>Joined march 1337</JoiningDate>
-            <FriendsNbr>42 Friends</FriendsNbr>
+            <JoiningDate>
+                <CelebrationIcon />
+                Joined march 1337
+            </JoiningDate>
+            <FriendsNbr>
+                <GroupIcon />
+                42 Friends
+            </FriendsNbr>
         </DateContainer>
     )
 }
@@ -37,18 +50,28 @@ const JoineDateAndFriends = () => {
 const ImageAndName = () => {
     return (
         <ImageAndNameContainer>
-            <ImageUser/>
+            <ImageUser src={Profile}/>
             <UserName>amine saoud</UserName>
         </ImageAndNameContainer>
     )
 }
 
 const UserProfilePart = () => {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     return (
         <UserProfileContainer>
             <ImageAndName />
             <JoineDateAndFriends />
-            <ButtonEditProfile>Edit Profile</ButtonEditProfile>
+            <ButtonEditProfile>
+                <Button onClick={handleOpen} variant="contained" sx={style}>
+                    <EditProfileText>
+                        Edit Profile
+                    </EditProfileText>
+                </Button>
+            </ButtonEditProfile>
+            <EditModal open={open} handleClose={handleClose}/>
         </UserProfileContainer>
     )
 }
@@ -96,7 +119,6 @@ const History = () => {
         <HistorySection>
             <PartTilte Name="Game History"/>
             <HistoryResult />
-            <PartTilte Name="Friends"/>
         </HistorySection>
     )
 }
@@ -105,16 +127,27 @@ const HistoryFriendsContainer = () => {
     return (
         <UserHistoryFriendsSection>
             <History />
-            {/* <Friends /> */}
         </UserHistoryFriendsSection>
     )
 }
 
 export default function Users() {
     return (
-        <UsersContainer>
-            <UserProfilePart />
-            <HistoryFriendsContainer />
-        </UsersContainer>
+        <>
+            <Navbar users="true" />
+            <UsersContainer>
+                <UserProfilePart />
+                <HistoryFriendsContainer />
+            </UsersContainer> 
+        </>
     )
+}
+
+const style = {
+	height: "100%",
+	width: "100%",
+	borderRadius: "1rem",
+	backgroundColor: "#0711D9",
+	color: "#05F2DB",
+	fontSize: "1.6rem",
 }

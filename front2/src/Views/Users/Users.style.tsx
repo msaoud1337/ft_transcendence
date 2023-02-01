@@ -17,8 +17,8 @@ export const UserHistoryFriendsSection = styled.div`
 `
 
 export const UserProfileContainer = styled.div`
-    width: 50rem;
-    height: 32rem;
+    width: 45rem;
+    height: 28rem;
     background-color: #16152B;
     display: flex;
     flex-direction: column;
@@ -26,6 +26,7 @@ export const UserProfileContainer = styled.div`
     border-radius: 2rem;
     margin-top: 25rem;
     margin-left: 9rem;
+    margin-right: 3rem;
 `
 
 export const ImageAndNameContainer = styled.div`
@@ -45,6 +46,7 @@ export const ImageUser = styled.img`
 export const UserName = styled.p`
     font-size: 1.2rem;
     font-family: "Press Start 2P";
+    color : #C4C4C4;
 `
 
 export const DateContainer = styled.div`
@@ -53,26 +55,32 @@ export const DateContainer = styled.div`
     display: flex;
     gap: 5rem;
     align-items: center;
+    justify-content: space-between;
 `
 
 export const FriendsNbr = styled.p`
     font-size: 0.8rem;
     font-family: "Press Start 2P";
+    color : #C4C4C4;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
 `
 
 export const JoiningDate = styled.p`
     font-size: 0.8rem;
     font-family: "Press Start 2P";
+    color : #C4C4C4;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
 `
 
-export const ButtonEditProfile = styled.button`
+export const ButtonEditProfile = styled.div`
     font-size: 0.8rem;
-    font-family: "Press Start 2P";
     height: 4rem;
     width: 60%;
-    background-color: #0711D9;
-    border-radius: 1rem;
-    color: #05F2DB;
+    margin: auto;
 `
 
 export const HistorySection = styled.div`
@@ -141,4 +149,18 @@ export const PlayerNameHis = styled.p`
 export const HistoryData = styled.p`
     font-size: 1.3rem;
     font-family: "Press Start 2P";
+`
+
+export const EditProfileText = styled.p`
+    color: #05F2DB;
+    font-size: 1rem;
+    font-family: 'Press Start 2P';
+`
+
+export const ButtonsStyle = styled.div`
+    height: 5rem;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap : 2rem;
 `

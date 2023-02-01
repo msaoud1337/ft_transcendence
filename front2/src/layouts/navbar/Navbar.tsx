@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
     NavbarStyle, 
     LogoStyle,
@@ -6,57 +6,54 @@ import {
     RouteElement,
     UserName,
     NavbarRightSideContainer,
-    UserAvatar
 } from "./Navbar.style";
-import Avatar from "../../assets/svg/profile.svg"
 import Logo from "../../assets/svg/Logo.svg"
-import { useAppDispatch, useAppSelector } from "../../Hooks/Hooks";
-import { SignInWithKey } from "../../Apis/LoginAPIs/loginApi";
+import {useAppSelector } from "../../Hooks/Hooks";
+import { NavLink } from "react-router-dom";
+import Avatar from "./avatar/navAvatar"
+import Notification from "./notification/Notification";
 
 const NavbarRightSide = () => {
-    const dispatch = useAppDispatch()
-    const UserData = useAppSelector(state => state.counter.UserData)
-
+    const { UserData } = useAppSelector(state => state.counter)
     return (
         <NavbarRightSideContainer>
-            <div></div>
+            <Notification />
             <UserName>{UserData?.user_name}</UserName>
-            <UserAvatar src={UserData?.avatar_url}/>
+            <Avatar image={UserData?.avatar_url}/>
         </NavbarRightSideContainer>
 
     )
 }
 
-const Route = () => {
+const Routes = () => {
     return (
         <StyledRoute>
-            <RouteElement>Home</RouteElement>
+            <NavLink to="/" style={routeStyle}>
+                <RouteElement>Home</RouteElement>
+            </NavLink>
             <RouteElement>Channels</RouteElement>
             <RouteElement>Game</RouteElement>
-            <RouteElement>Users</RouteElement>
+            <NavLink to="/users" style={routeStyle}>
+                <RouteElement>Users</RouteElement>
+            </NavLink>
             <RouteElement>About</RouteElement>
         </StyledRoute>
     )
 }
 
-
-export default function Navbar() {
-    const dispatch = useAppDispatch()
-    const UserData = useAppSelector(state => state.counter.UserData)
-	const isUserSigned = useAppSelector(state => state.counter.isUserSigned)
-    
-    useEffect( () => {
-        if (isUserSigned)
-            dispatch(SignInWithKey(null))
-    },[isUserSigned])
-
-    console.log(UserData)
-
+export default function Navbar({users} : {users : "true" | "false"}) {
+    const { UserData } = useAppSelector(state => state.counter)
     return (
-        <NavbarStyle>
+        <>
+        <NavbarStyle className={users === "true" ? "Navbar_Without_User" : ""}>
             <LogoStyle src={Logo} />
-            {UserData ? <Route /> : <></>}
+            {UserData ? <Routes /> : <></>}
             {UserData ? <NavbarRightSide /> : <></>}
         </NavbarStyle>
+        </>
     )
+}
+
+const routeStyle = {
+    textDecoration : "none",
 }

@@ -26,14 +26,11 @@ export const PongLogo = styled.img`
 export const PongText = styled.p`
     font-size: 1rem;
     font-family: 'Press Start 2P', cursive;
+    color : #C4C4C4;
 `
 
-export const PlayButton = styled.button`
-    height: 5rem;
-    width: 20rem;
-    border-radius: 1rem;
-    background-color: #0711D9;
+export const PlayButton = styled.div`
     color: #05F2DB;
     font-size: 1.6rem;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P';
 `

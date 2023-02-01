@@ -1,14 +1,22 @@
 import React from 'react';
-import Home from './Views/Home/Home';
-import SignIn from './Components/SignIn/SignIn';
-import Users from './Views/Users/Users';
-import Navbar from './layouts/navbar/Navbar';
+import {RouterProvider} from "react-router-dom"
+import {Router} from "../src/Routing/Router"
+import { ThemeProvider, createTheme } from '@mui/material';
+
+const theme = createTheme({
+	typography: {
+	  allVariants: {
+		fontFamily: ['Press Start 2P','cersive'].join(","),
+		textTransform: 'none',
+	  },
+	},
+  });
 
 function App() {
 	return (
-		<>
-			<Home />
-		</>
+		<ThemeProvider theme={theme}>
+			<RouterProvider router={Router}/>
+		</ThemeProvider>
 	)
 }
 

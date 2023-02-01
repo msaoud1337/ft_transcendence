@@ -2,9 +2,25 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color : #C4C4C4;
 }
 
 html {
     font-size: 10px;
+}
+
+.Navbar_Without_User {
+    background-color: black !important;
+}
+
+
+.test10 {
+    height: "3rem";
+    width: "25rem";
+}
+
+
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+    background-color: #16152B !important;
+    border: #05F2DB  1px solid !important;
+    padding: 0rem 0.5rem !important;
 }

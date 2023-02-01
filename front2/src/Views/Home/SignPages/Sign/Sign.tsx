@@ -9,30 +9,36 @@ import {
     SignUpRedirect,
     TextContainer,
     TextSignIn,
-    UserNameInputs
+    UserNameInputs,
+    SignUpStyle,
+    ButtonText
 } from "./SignIn.style";
-import Logo from "../../assets/svg/Logo.svg"
-import { SignHide, SignUpFalse, SignUpTrue } from "../../Store/Slices/counterSlice";
-import { useAppDispatch, useAppSelector} from "../../Hooks/Hooks";
-import { SignUpStyle } from "../SignUp/SignUp.style";
-import { SignInRequest, SignUpRequest } from "../../Apis/LoginAPIs/loginApi";
+import Logo from "../../../../assets/svg/Logo.svg";
+import { SignHide, SignUpFalse, SignUpTrue } from "../../../../Store/Slices/counterSlice";
+import { useAppDispatch, useAppSelector} from "../../../../Hooks/Hooks";
+import { SignInRequest, SignUpRequest } from "../../../../Apis/LoginAPIs/loginApi";
+import Button from '@mui/material/Button';
 
 const SignInComp = () => {
-    
+
     const dispatch = useAppDispatch()
-    
+
     const UserSignInData = {
         user_name : "",
         password : "",
     }
     
-    const UserSignUpData = {
-        user_name : "",
-    }
-    
     const SignIn = () => {
         dispatch(SignInRequest(UserSignInData))
         dispatch(SignHide())
+    }
+
+    const buttonStyle = {
+        height : "3rem",
+        width : "25rem",
+        backgroundColor : "#0711D9",
+        borderRadius : "5px",
+        color : "#05F2DB",
     }
 
     return (
@@ -47,7 +53,9 @@ const SignInComp = () => {
                 placeholder="Password" 
                 type="password"
             />
-            <ButtonSignIn onClick={SignIn}>Sign In</ButtonSignIn>
+            <Button sx={buttonStyle} onClick={SignIn} >
+                <ButtonText>Sign In</ButtonText>
+            </Button>
             <GoogleButton>Sign in with Google</GoogleButton>
             <TextContainer>
                 <SignInLastText>Dont have an account ?</SignInLastText>

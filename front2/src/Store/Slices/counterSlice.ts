@@ -1,5 +1,6 @@
 import { createSlice} from '@reduxjs/toolkit'
 import type { RootState } from '../Store'
+import { PayloadAction } from "@reduxjs/toolkit"
 import {UserDatatypes} from "../../Types"
 import { 
   SignInRequest,
@@ -15,7 +16,7 @@ interface CounterState {
   SignInerror: string | null,
   SignUpStatus: "loading" | "idle",
   SignUpError: string | null,
-	SignUpConfirmation : null | string,
+    SignUpConfirmation : null | string,
   SignInwithKeyState: "loading" | "idle",
   SignInWitKeyError: null | string,
   UserData : null | UserDatatypes,
@@ -30,7 +31,7 @@ const initialState: CounterState = {
   SignInstatus: "idle",
   SignUpStatus: "idle",
   SignUpError: null,
-	SignUpConfirmation: null,
+    SignUpConfirmation: null,
   SignInwithKeyState: "idle",
   SignInWitKeyError: null,
   UserData : null,
@@ -54,27 +55,25 @@ export const counterSlice = createSlice({
     SignUpFalse : (state) => {
       state.SignUp = false
     },
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    // },
+    logOut (state , action : PayloadAction<null>) {
+        state.UserData = action.payload   
+    }
   },
   extraReducers: (builder) => {
+
     builder.addCase(SignInRequest.pending, (state) => {
       state.SignInstatus = "loading";
       state.SignInerror = null;
     });
     builder.addCase(SignInRequest.fulfilled, 
-      (state, {payload} : any) => {
-      if (payload){
-        console.log(payload)
-        state.isUserSigned = payload
-      }
+      (state, action) => {
+      if (action.payload)
+        state.isUserSigned = action.payload
       state.SignInstatus = "idle";
     });
     builder.addCase(SignInRequest.rejected, 
-      (state, { payload } : any) => {
-      if (payload) 
-        state.SignInerror = payload.message;
+      (state) => {
+      state.SignInerror = "Sign In Request failed !"
       state.SignInstatus = "idle";
     });
 
@@ -83,36 +82,33 @@ export const counterSlice = createSlice({
       state.SignUpError = null;
     })
     builder.addCase(SignUpRequest.fulfilled,
-      (state, {payload} : any) => {
+      (state, {payload}) => {
         if (payload)
-				  state.SignUpConfirmation = payload
-				state.SignUpStatus = "idle"
+                  state.SignUpConfirmation = payload
+                state.SignUpStatus = "idle"
       })
-		builder.addCase(SignUpRequest.rejected, 
-			(state, {payload} : any) => {
-				if (payload)
-					state.SignUpError = payload.message
-				state.SignUpStatus = "idle"
-			})
+        builder.addCase(SignUpRequest.rejected, 
+            (state) => {
+                state.SignUpError = "Getting userData using key failed !"
+                state.SignUpStatus = "idle"
+            })
     
     builder.addCase(SignInWithKey.pending, (state) => {
       state.SignInwithKeyState = "loading"
       state.SignInWitKeyError = null;
-      console.log("Hi")
     })
     builder.addCase(SignInWithKey.fulfilled, 
-      (state, {payload} : any) => {
-        if (payload){
-          console.log("from the payload ",payload)
+      (state, {payload}) => {
+        if (payload)
           state.UserData = payload
-        }
         state.SignInwithKeyState = "idle"
     })
-    builder.addCase(SignInWithKey.rejected, (state, {payload} : any) => {
-      if (payload)
-        state.SignInWitKeyError = payload.message
-      state.SignInwithKeyState = "idle"
+    builder.addCase(SignInWithKey.rejected, 
+      (state) => {
+        state.SignInWitKeyError = "Sign Up Request failed"
+        state.SignInwithKeyState = "idle"
     })
+
   }
 })
 
@@ -121,7 +117,7 @@ export const {
   SignUpFalse, 
   SignHide, 
   SignDisplay,
-  // incrementByAmount 
+  logOut
 } = counterSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type

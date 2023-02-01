@@ -28,11 +28,13 @@ export const StyledRoute = styled.div`
 export const RouteElement = styled.div`
     font-size: 1.4rem;
     font-family: 'Press Start 2P', cursive;
+    color : #C4C4C4;
 `
 
 export const UserName = styled.div`
     font-size: 1.4rem;
     font-family: 'Press Start 2P', cursive;
+    color : #C4C4C4;
 `
 
 export const UserAvatar = styled.img`
@@ -42,10 +44,12 @@ export const UserAvatar = styled.img`
 `
 
 export const NavbarRightSideContainer = styled.div`
-    width: 30rem;
+    width: 40rem;
+    padding-left: 15rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-right: 1rem;
+    height: 100%;
 `
 

@@ -44,6 +44,7 @@ export const UserNameInputs = styled.input`
     padding: 0.5rem 1rem;
     font-family: 'Fredoka One', cursive;
     font-size: 1.2rem;
+    color : #C4C4C4;
 `
 
 export const ButtonSignIn = styled.button`
@@ -54,7 +55,7 @@ export const ButtonSignIn = styled.button`
     font-family: 'Fredoka One', cursive;
     font-size: 1.2rem;
     border-radius: 0.5rem;
-    `
+`
 
 export const GoogleButton = styled.button`
     height: 3rem;
@@ -86,4 +87,22 @@ export const TextContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 0.4rem;
+`
+
+export const SignUpStyle = styled.div`
+    width: 28.5%;
+    height: 70%;
+    background-color: #16152B;
+    border: 0.5rem #0711D9 solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.8rem;
+`
+
+export const ButtonText = styled.h3`
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.6rem;
+    color : #05F2DB;    
 `

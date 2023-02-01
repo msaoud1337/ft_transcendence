@@ -1,4 +1,5 @@
 import React from "react";
+import {ImageType} from "react-images-uploading"
 
 export type TitlteTypes = {
     Name : string
@@ -15,5 +16,4 @@ export type UserDatatypes = {
     twoFactorAuthSecret : null,
     state : string,
     createdAt : string,
-  }
-  
+}

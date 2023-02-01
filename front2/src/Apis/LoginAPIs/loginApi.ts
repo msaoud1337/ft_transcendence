@@ -4,24 +4,22 @@ import { UserDatatypes } from "../../Types";
 
 export const SignInRequest = createAsyncThunk(
     "SignInRequest",
-    async (data: object, thunkApi : any) => {
+    async (data: object) => {
         try {
             const User = await axios.post("http://localhost:3001/api/auth/login"
                 ,data
             )
             localStorage.setItem("UserKey",User.data)
             return true
-        } catch (error: string | unknown) {
-            return thunkApi.rejectWithValue({
-                message : "Sign In Request failed !"
-            })
+        } catch (error) {
+            return 
         }
     }
 )
 
 export const SignInWithKey = createAsyncThunk(
     "SignInWithKey",
-    async (thunkApi : any) => {
+    async () => {
         try {
             const UserData = await axios.get<UserDatatypes>("http://localhost:3001/api/users/me",
             {
@@ -30,17 +28,15 @@ export const SignInWithKey = createAsyncThunk(
                 }
             })
             return UserData.data
-        } catch (error : string | unknown) {
-            return thunkApi.rejectWithValue({
-                message : "Getting userData using key failed !"
-            })
+        } catch (error) {
+            return 
         }
     }
 )
 
 export const SignUpRequest = createAsyncThunk(
     "SignUpRequest",
-    async (data : {user_name : string}, thunkApi : any) => {
+    async (data : {user_name : string}) => {
         console.log(data)
         try {
             const User = await axios.post("http://localhost:3001/api/auth/signup"
@@ -51,10 +47,8 @@ export const SignUpRequest = createAsyncThunk(
             }
             )
             return User.data
-        } catch (error : string | unknown){
-            return thunkApi.rejectWithValue({
-                message : "Sign Up Request failed"
-            })
+        } catch (error){
+            return 
         }
     }
 )
