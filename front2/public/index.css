@@ -24,3 +24,11 @@ html {
     border: #05F2DB  1px solid !important;
     padding: 0rem 0.5rem !important;
 }
+
+
+.input {
+    height : 5rem;
+    width: 10rem;
+    background-color: red;
+    
+}

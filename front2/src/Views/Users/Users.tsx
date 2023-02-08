@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { 
     ButtonEditProfile, 
     DateContainer, 
@@ -25,33 +25,37 @@ import {
 } from "./Users.style";
 import { TitlteTypes } from "../../Types";
 import Profile from "../../assets/svg/profile.svg"
-import Navbar from "../../layouts/navbar/Navbar";
 import GroupIcon from '@mui/icons-material/Group';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import Button from '@mui/material/Button';
-import { PlayButton } from "../Home/Home.style";
 import { EditModal } from "./EditProfile/EditProfile";
+import { useAppDispatch, useAppSelector } from "../../Hooks/Hooks";
+import "../../global.css"
+import { NavLink } from "react-router-dom";
 
 const JoineDateAndFriends = () => {
+    const {UserData} = useAppSelector(state => state.counter)
+    const {friends} = useAppSelector(state => state.userSlice)
     return (
         <DateContainer>
             <JoiningDate>
                 <CelebrationIcon />
-                Joined march 1337
+                Joined {UserData?.createdAt.substring(0,10)}
             </JoiningDate>
             <FriendsNbr>
                 <GroupIcon />
-                42 Friends
+                friends {friends?.length}
             </FriendsNbr>
         </DateContainer>
     )
 }
 
 const ImageAndName = () => {
+    const {UserData} = useAppSelector(state => state.counter)
     return (
         <ImageAndNameContainer>
-            <ImageUser src={Profile}/>
-            <UserName>amine saoud</UserName>
+            <ImageUser src={UserData?.avatar_url}/>
+            <UserName>{UserData?.user_name}</UserName>
         </ImageAndNameContainer>
     )
 }
@@ -80,7 +84,9 @@ const PartTilte = ({Name}: TitlteTypes) => {
     return (
         <PartTilteStyle>
             <SectionTilte>{Name}</SectionTilte>
-            <SeeAll>See all</SeeAll>
+            <NavLink to="all_users">
+                <SeeAll>See all</SeeAll>
+            </NavLink>
         </PartTilteStyle>
     )
 }
@@ -108,9 +114,9 @@ const HistoryComp = () => {
 const HistoryResult = () => {
     return (
         <HistroryResultStyle>
+            {/* <HistoryComp />
             <HistoryComp />
-            <HistoryComp />
-            <HistoryComp />
+            <HistoryComp /> */}
         </HistroryResultStyle>
     )
 }
@@ -132,13 +138,13 @@ const HistoryFriendsContainer = () => {
 }
 
 export default function Users() {
+    const dispatch = useAppDispatch()
     return (
         <>
-            <Navbar users="true" />
             <UsersContainer>
                 <UserProfilePart />
                 <HistoryFriendsContainer />
-            </UsersContainer> 
+            </UsersContainer>
         </>
     )
 }

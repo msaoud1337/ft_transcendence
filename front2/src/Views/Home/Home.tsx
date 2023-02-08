@@ -70,7 +70,6 @@ const HomeButton = () => {
 	return (
 		<>
 			<HomeStyle>
-				<Navbar users="false" />
 				<HomeSecendPart>
 					<PongLogo src={Pingpong}/>
 					<PongText>Oldie but Goldie!</PongText>

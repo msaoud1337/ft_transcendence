@@ -1,15 +1,17 @@
 import styled from "styled-components"
 
 export const NavbarStyle = styled.div`
+    max-width: 100%;
     width: 100%;
     height: 10rem;
+    max-height: 10rem;
     background-color: black;
     padding: 0 5%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: transparent;
-    border-bottom: 0.2rem black solid;
+    border-bottom: 1px gray solid;
 `
 
 export const LogoStyle = styled.img`

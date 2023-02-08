@@ -60,11 +60,15 @@ export const DateContainer = styled.div`
 
 export const FriendsNbr = styled.p`
     font-size: 0.8rem;
+    width: 10rem;
     font-family: "Press Start 2P";
     color : #C4C4C4;
     display: flex;
     align-items: center;
     gap: 0.3rem;
+    display: flex;
+    align-items: center;
+    width: 30%;
 `
 
 export const JoiningDate = styled.p`
@@ -74,6 +78,7 @@ export const JoiningDate = styled.p`
     display: flex;
     align-items: center;
     gap: 0.2rem;
+    width: 70%;
 `
 
 export const ButtonEditProfile = styled.div`
@@ -163,4 +168,10 @@ export const ButtonsStyle = styled.div`
     display: flex;
     justify-content: flex-end;
     gap : 2rem;
+`
+
+export const Parent = styled.div`
+    min-height: 100vh;
+    max-width: 100vw;
+    width: 100vw;
 `

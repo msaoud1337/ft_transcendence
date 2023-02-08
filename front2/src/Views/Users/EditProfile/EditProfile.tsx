@@ -14,7 +14,7 @@ import ImageUploading, { ImageType } from "react-images-uploading";
 import { useAppDispatch, useAppSelector } from "../../../Hooks/Hooks";
 import { EditProfileUserName } from "../../../Apis/LoginAPIs/userDetails";
 
-const AvatarEdit = () => {
+const AvatarEdit = ({handleClose} : { handleClose : () => void}) => {
     const dispatch = useAppDispatch()
     const {UserData} = useAppSelector(state => state.counter)
     const [images, setImages] = React.useState<ImageType>([UserData?.avatar_url]);
@@ -33,8 +33,16 @@ const AvatarEdit = () => {
     }
     
     const updateProfileData = () => {
-        const formData = new FormData()
-        dispatch(EditProfileUserName(images))
+        // const formData = new FormData()
+        // console.log(formData)
+        // formData.append("file", "saoud")
+        // dispatch(EditProfileUserName(formData))
+        handleClose()
+    }
+
+    const handleCancel = () => {
+        setImages([UserData?.avatar_url])
+        handleClose()
     }
 
     return (
@@ -45,8 +53,6 @@ const AvatarEdit = () => {
             >
                 {({
                     onImageUpload,
-                    onImageUpdate,
-                    onImageRemove,
                 }) => (
                     <Badge
                         sx={avatarStyle}
@@ -65,7 +71,7 @@ const AvatarEdit = () => {
             </ImageUploading>
             <UserNameInputs onChange={handleInput} placeholder="Display_name"/>
             <ButtonsStyle>
-                <Button onClick={() => setImages([UserData?.avatar_url])} sx={buttonsStyle} variant="outlined"  color="error" >Cancel</Button>
+                <Button onClick={handleCancel} sx={buttonsStyle} variant="outlined"  color="error" >Cancel</Button>
                 <Button onClick={updateProfileData} sx={buttonsStyle} variant="contained" color="success">Save</Button>
             </ButtonsStyle>
         </>
@@ -82,7 +88,7 @@ export function EditModal({open, handleClose} : {open : boolean, handleClose : (
             aria-describedby="modal-modal-description"
             >
             <Box sx={style}>
-                <AvatarEdit />
+                <AvatarEdit handleClose={handleClose}/>
             </Box>
         </Modal>
     </div>

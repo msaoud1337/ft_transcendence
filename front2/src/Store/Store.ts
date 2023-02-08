@@ -1,18 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from "./Slices/counterSlice"
 import userSlice from './Slices/userSlice'
+import chatStat from './Slices/chatSlice'
+
 import { TypedUseSelectorHook, useSelector } from 'react-redux'
 
 export const store = configureStore({
   reducer: {
     counter : counterReducer,
-    userSlice : userSlice
+    userSlice : userSlice,
+    chatStat : chatStat,
   },
 })
-
-// const store = configureStore({
-//   reducer: rootReducer,
-// })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>

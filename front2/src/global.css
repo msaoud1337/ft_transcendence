@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
+}
+
+html {
+    font-size: 10px;
+}
+
+.Navbar_Without_User {
+    background-color: #151424 !important;
+}
+
+
+.test10 {
+    height: "3rem";
+    width: "25rem";
+}
+
+
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+    background-color: #16152B !important;
+    border: #05F2DB  1px solid !important;
+    padding: 0rem 0.5rem !important;
+}
+
+
+.input {
+    height : 5rem;
+    width: 10rem;
+    background-color: red;
+}
+
+.css-esqxzr-MuiButtonBase-root-MuiButton-root {
+    font-family: 'Press Start 2P', cursive;
+}
+
+.css-1c00zlg-MuiButtonBase-root-MuiButton-root {
+    font-family: 'Press Start 2P', cursive;
+}
+
+.css-2e4m1-MuiButtonBase-root-MuiButton-root {
+    font-family: 'Press Start 2P', cursive;
+}
+
+.css-sssg8r-MuiButtonBase-root-MuiButton-root {
+    font-family: 'Press Start 2P', cursive;
+}

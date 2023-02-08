@@ -9,9 +9,10 @@ import {
 } from "./Navbar.style";
 import Logo from "../../assets/svg/Logo.svg"
 import {useAppSelector } from "../../Hooks/Hooks";
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import Avatar from "./avatar/navAvatar"
 import Notification from "./notification/Notification";
+import { useLocation } from "react-router-dom";
 
 const NavbarRightSide = () => {
     const { UserData } = useAppSelector(state => state.counter)
@@ -31,7 +32,9 @@ const Routes = () => {
             <NavLink to="/" style={routeStyle}>
                 <RouteElement>Home</RouteElement>
             </NavLink>
-            <RouteElement>Channels</RouteElement>
+            <NavLink to="/chat" style={routeStyle}>
+                <RouteElement>Channels</RouteElement>
+            </NavLink>
             <RouteElement>Game</RouteElement>
             <NavLink to="/users" style={routeStyle}>
                 <RouteElement>Users</RouteElement>
@@ -41,15 +44,21 @@ const Routes = () => {
     )
 }
 
-export default function Navbar({users} : {users : "true" | "false"}) {
+export default function Navbar() {
     const { UserData } = useAppSelector(state => state.counter)
+    const location = useLocation().pathname
+    console.log(location)
     return (
         <>
-        <NavbarStyle className={users === "true" ? "Navbar_Without_User" : ""}>
-            <LogoStyle src={Logo} />
-            {UserData ? <Routes /> : <></>}
-            {UserData ? <NavbarRightSide /> : <></>}
-        </NavbarStyle>
+            <NavbarStyle className="Navbar_Without_User">
+                <LogoStyle src={Logo} />
+                {UserData ? <Routes /> : <></>}
+                {UserData ? <NavbarRightSide /> : <></>}
+            </NavbarStyle>
+
+            <main>
+                <Outlet />
+            </main>
         </>
     )
 }

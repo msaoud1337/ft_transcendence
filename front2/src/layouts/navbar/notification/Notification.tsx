@@ -19,13 +19,20 @@ const NotifText = ({name} : { name : string }) => {
     ) 
 }
 
-const Notification = ({data} : { data : UserDatatypes }) => {
+const Notification = ({data, handleClose} : { data : UserDatatypes, handleClose : () => void}) => {
+
     const dispatch = useAppDispatch()
+
     const cancelRequest = () => {
         dispatch(CancelFriendRequest(data.id))
+        handleClose()
+        dispatch(GetPendingRequest())
     }
+    
     const accepteRequestFriend = () => {
         dispatch(AccepteFriendRequest(data.id))
+        handleClose()
+        dispatch(GetPendingRequest())
     }
 
     return (
@@ -74,9 +81,9 @@ export default function Notifications() {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                { friendRequest && friendRequest.map((data : UserDatatypes) => {
+                { friendRequest && friendRequest.map((data) => {
                     return (
-                        <Notification data={data} key={data.id}/>
+                        <Notification data={data} key={data.id} handleClose={handleClose}/>
                     )
                 })}
             </Menu>

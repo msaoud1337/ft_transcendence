@@ -2,6 +2,7 @@ import React from 'react';
 import {RouterProvider} from "react-router-dom"
 import {Router} from "../src/Routing/Router"
 import { ThemeProvider, createTheme } from '@mui/material';
+import { SocketsProvider } from './Events/SocketProvider';
 
 const theme = createTheme({
 	typography: {
@@ -10,12 +11,15 @@ const theme = createTheme({
 		textTransform: 'none',
 	  },
 	},
-  });
+});
 
 function App() {
+
 	return (
 		<ThemeProvider theme={theme}>
-			<RouterProvider router={Router}/>
+			<SocketsProvider>
+				<RouterProvider router={Router}/>
+			</SocketsProvider>
 		</ThemeProvider>
 	)
 }
