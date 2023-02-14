@@ -47,7 +47,6 @@ const Routes = () => {
 export default function Navbar() {
     const { UserData } = useAppSelector(state => state.counter)
     const location = useLocation().pathname
-    console.log(location)
     return (
         <>
             <NavbarStyle className="Navbar_Without_User">

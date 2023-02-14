@@ -5,12 +5,15 @@ import { Conversations } from "./Conversations/Conversations";
 import { Chat } from "./Chat/Chat";
 import { ConnectedUsers } from "./ConnectedUsers/ConnectedUsers";
 import { useAppDispatch, useAppSelector } from "../../Hooks/Hooks";
-import { setDisplayState } from "../../Store/Slices/chatSlice";
+import { ChatType, setDisplayState } from "../../Store/Slices/chatSlice";
 import { useEffect } from "react";
+import { GetFriends } from "../../Apis/LoginAPIs/userDetails";
+import { Outlet } from "react-router-dom";
+import { socket } from "../../Events/SocketProvider";
 
 const ChatRouting = () => {
     const dispatch = useAppDispatch()
-    const {displayState} = useAppSelector(state => state.chatStat)
+    const {displayState} = useAppSelector(state => state.chatSlice)
     const setGroup = () => dispatch(setDisplayState("group"))
     const setUsers = () => dispatch(setDisplayState("users"))
 
@@ -29,7 +32,7 @@ const ChatContainer = () => {
         <ChatStyle>
             <ChatRouting />
             <ChatAndConnections>
-                <Chat />
+                <Outlet />
                 <ConnectedUsers />
             </ChatAndConnections>
         </ChatStyle>
@@ -39,7 +42,19 @@ const ChatContainer = () => {
 export const Channels = () => {
 
     const {friends} = useAppSelector(state => state.userSlice)
-    console.log(friends)
+    const dispatch = useAppDispatch()
+
+    useEffect( () => {
+        socket.on("receive_message", (data : ChatType) => {
+            console.log(data)
+            // setMessages([...directMessages, data])
+        })
+    },[socket])
+    
+    useEffect( () => {
+        dispatch(GetFriends())
+    },[])
+
     return (
         <ChatPageContainer>
             <Conversations />

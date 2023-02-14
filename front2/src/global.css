@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Press Start 2P', cursive;
 }
 
 html {
@@ -47,4 +46,11 @@ html {
 
 .css-sssg8r-MuiButtonBase-root-MuiButton-root {
     font-family: 'Press Start 2P', cursive;
+}
+
+.css-1be9pf3-MuiButtonBase-root-MuiButton-root {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem !important;
+    padding: 5px !important;
+    width: 20px !important;
 }

@@ -1,36 +1,58 @@
-import { RouteContainer } from "./AllUser.Style"
+import { AllUsersContainer, RouteContainer } from "./AllUser.Style"
 import { Button } from "@mui/material"
-import { NavLink, useLocation } from "react-router-dom"
+import { NavLink, Outlet, useLocation } from "react-router-dom"
+import { GetAllUsers, GetBlockedUsers, GetFriends } from "../../../Apis/LoginAPIs/userDetails"
+import { useAppDispatch } from "../../../Hooks/Hooks"
+import { useEffect } from "react"
 
 export const RoutUsers = () => {
     const location = useLocation().pathname
+    console.log(location)
     return (
         <RouteContainer>
-            <NavLink to="/users/all_users" style={navStyle}>
+            <NavLink to="/all_users" style={navStyle}>
                 <Button 
-                    variant={location === "/users/all_users" ? "contained" : "outlined"}
+                    variant={location === "/all_users" ? "contained" : "outlined"}
                     sx={style}
                     >
                     Users
                 </Button>
             </NavLink>
-            <NavLink to="/users/friends" style={navStyle}>
+            <NavLink to="/friends" style={navStyle}>
                 <Button 
-                    variant={location === "/users/friends" ? "contained" : "outlined"}
+                    variant={location === "/friends" ? "contained" : "outlined"}
                     sx={style}
                     >
                     friends
                 </Button>
             </NavLink>
-            <NavLink to="/users/blocked_users" style={navStyle}>
+            <NavLink to="/blocked_users" style={navStyle}>
                 <Button 
-                    variant={location === "/users/blocked_users" ? "contained" : "outlined"}
+                    variant={location === "/blocked_users" ? "contained" : "outlined"}
                     sx={style}
                 >
                     blocked
                 </Button>
             </NavLink>
         </RouteContainer>
+    )
+}
+
+
+export const AllUsersParent = () => {
+    const location = useLocation().pathname
+    const dispatch = useAppDispatch()
+
+    useEffect( () => {
+        dispatch(GetAllUsers())
+        dispatch(GetFriends())
+        dispatch(GetBlockedUsers())
+    },[location] )
+
+    return (
+        <AllUsersContainer>
+            <Outlet />
+        </AllUsersContainer>
     )
 }
 

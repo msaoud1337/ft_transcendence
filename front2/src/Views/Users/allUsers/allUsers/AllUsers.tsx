@@ -2,7 +2,7 @@ import { AllUsersContainer, CartStyle, RouteContainer, UserName, UsersContainer 
 import { Button } from "@mui/material"
 import { useAppSelector, useAppDispatch } from "../../../../Hooks/Hooks"
 import { useEffect, useState } from "react"
-import { blockUserRequest, GetAllUsers, GetBlockedUsers, GetFriends } from "../../../../Apis/LoginAPIs/userDetails"
+import { GetAllUsers, GetBlockedUsers, GetFriends } from "../../../../Apis/LoginAPIs/userDetails"
 import { UserDatatypes } from "../../../../Types"
 import { CardAvatar } from "../usersAvatar/UsersAvatar"
 import { RoutUsers } from "../usersRoute"
@@ -68,14 +68,7 @@ export const CardAllUsers = ({user} : {user : UserDatatypes}) => {
 }
 
 export const Users = () => {
-    const dispatch = useAppDispatch()
-    const {allUsers, blockerUsers} = useAppSelector(state => state.userSlice)
-    
-    useEffect( () => {
-        dispatch(GetAllUsers())
-        dispatch(GetFriends())
-        dispatch(GetBlockedUsers())
-    },[socket] )
+    const {allUsers} = useAppSelector(state => state.userSlice)
 
     return (
         <UsersContainer>
@@ -88,10 +81,10 @@ export const Users = () => {
 
 export const UsersPage = () => {
     return (
-        <AllUsersContainer>
+        <>
             <RoutUsers />
             <Users />
-        </AllUsersContainer>
+        </>
     )
 }
 

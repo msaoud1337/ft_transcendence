@@ -84,7 +84,7 @@ const PartTilte = ({Name}: TitlteTypes) => {
     return (
         <PartTilteStyle>
             <SectionTilte>{Name}</SectionTilte>
-            <NavLink to="all_users">
+            <NavLink to="/all_users">
                 <SeeAll>See all</SeeAll>
             </NavLink>
         </PartTilteStyle>
@@ -139,6 +139,7 @@ const HistoryFriendsContainer = () => {
 
 export default function Users() {
     const dispatch = useAppDispatch()
+
     return (
         <>
             <UsersContainer>

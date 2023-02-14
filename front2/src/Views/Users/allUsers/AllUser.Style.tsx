@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const AllUsersContainer = styled.div`
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    height: 100vh;
     max-width: 100vw;
     display: flex;
     background-color: black;

@@ -7,7 +7,7 @@ import profile from "../../../assets/svg/profile.svg"
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useAppDispatch, useAppSelector } from '../../../Hooks/Hooks';
-import { GetPendingRequest } from '../../../Apis/LoginAPIs/userDetails';
+import { GetAllUsers, GetBlockedUsers, GetFriends, GetPendingRequest } from '../../../Apis/LoginAPIs/userDetails';
 import { UserDatatypes } from '../../../Types';
 import { CancelFriendRequest, AccepteFriendRequest } from '../../../Apis/LoginAPIs/userDetails';
 
@@ -25,14 +25,24 @@ const Notification = ({data, handleClose} : { data : UserDatatypes, handleClose 
 
     const cancelRequest = () => {
         dispatch(CancelFriendRequest(data.id))
-        handleClose()
-        dispatch(GetPendingRequest())
+        .then(() => {
+            handleClose()
+            dispatch(GetPendingRequest())
+            dispatch(GetAllUsers())
+            dispatch(GetFriends())
+            dispatch(GetBlockedUsers())
+        })
     }
     
     const accepteRequestFriend = () => {
         dispatch(AccepteFriendRequest(data.id))
-        handleClose()
-        dispatch(GetPendingRequest())
+        .then(() => {
+            handleClose()
+            dispatch(GetPendingRequest())
+            dispatch(GetAllUsers())
+            dispatch(GetFriends())
+            dispatch(GetBlockedUsers())
+        })
     }
 
     return (

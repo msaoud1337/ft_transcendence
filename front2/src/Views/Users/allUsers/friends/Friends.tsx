@@ -34,7 +34,7 @@ const CardFriends = ({user} : {user : UserDatatypes}) => {
                 remove
             </Button>
             <Button
-                variant="contained" 
+                variant="outlined" 
                 sx={buttonStyle}
                 onClick={blockUser}
             >
@@ -57,10 +57,10 @@ const Friends = () => {
 
 export const  FriendsPage = () => {
     return (
-        <AllUsersContainer>
+        <>
             <RoutUsers />
             <Friends />
-        </AllUsersContainer>
+        </>
     )
 }
 

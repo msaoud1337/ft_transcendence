@@ -52,10 +52,10 @@ const Blocked = () => {
 
 export const  BlockedPage = () => {
     return (
-        <AllUsersContainer>
+        <>
             <RoutUsers />
             <Blocked />
-        </AllUsersContainer>
+        </>
     )
 }
 
