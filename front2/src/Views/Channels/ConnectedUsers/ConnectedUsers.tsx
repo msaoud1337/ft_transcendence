@@ -4,7 +4,6 @@ import { ConnectionsStyle, FriendComponentStyle, UserName, UserNameAndState, Use
 import { styled } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 import { UserDatatypes } from "../../../Types";
-import { setSelectedConversation } from "../../../Store/Slices/chatSlice";
 import { NavLink } from "react-router-dom";
 export const CardAvatar = ({avatar, state} : {avatar : string, state : string}) => {
     const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -46,8 +45,8 @@ const Friends = ({friend} : {friend : UserDatatypes}) => {
                 <UserName>{friend.user_name}</UserName>
                 <UserState>{friend.state}</UserState>
             </UserNameAndState>
-            <NavLink to={`/chat/${friend.id}`} >
-                <Button variant="contained" onClick={() => dispatch(setSelectedConversation(friend.id))}>
+            <NavLink to={`/chat/${friend.id}`} style={{textDecoration : "none"}}>
+                <Button variant="contained">
                     chat
                 </Button>
             </NavLink>

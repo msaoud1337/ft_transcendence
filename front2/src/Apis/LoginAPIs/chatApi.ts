@@ -18,3 +18,15 @@ export const GetHistoryMessages = createAsyncThunk(
         }
     }
 )
+
+export const GetUser = createAsyncThunk(
+    "checkUser",
+    async (userId : string) => {
+        try {
+            const response = await axios.get(`http://localhost:3001/api/users/${userId}`,token)
+            return response.data
+        } catch {
+
+        }
+    }
+)

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { GetHistoryMessages } from "../../Apis/LoginAPIs/chatApi";
+import { GetHistoryMessages, GetUser } from "../../Apis/LoginAPIs/chatApi";
 import { UserDatatypes } from "../../Types";
 
 export interface ChatType {
@@ -12,14 +12,14 @@ export interface ChatType {
 
 interface ChatStat {
     displayState : "users" | "group",
-    selectedConversationId : number,
     directMessages : ChatType[] | null,
+    receiver : UserDatatypes | null,
 }
 
 const initialState : ChatStat = {
     displayState : "users",
-    selectedConversationId : 0,
     directMessages : null,
+    receiver : null,
 }
 
 export const chatStat = createSlice({
@@ -29,28 +29,28 @@ export const chatStat = createSlice({
         setDisplayState : (state, action : PayloadAction<"users" | "group">) => {
             state.displayState = action.payload
         },
-        setSelectedConversation : (state, action : PayloadAction<number>) => {
-            state.selectedConversationId = action.payload
-        },
         setDirectMessage : (state, action : PayloadAction<ChatType[]>) => {
             state.directMessages = action.payload
         },
-        setNewMessage : (state, action : PayloadAction<ChatType>) => {
-            state.directMessages?.push(action.payload)
-        }
+        setMessage : (state, action : PayloadAction<ChatType>) => {
+            if (action.payload)
+                state.directMessages?.push(action.payload)
+        },
     },
     extraReducers(builder) {
         builder.addCase(GetHistoryMessages.fulfilled, (state, action) => {
             state.directMessages = action.payload
+        })
+        builder.addCase(GetUser.fulfilled, (state, action) => {
+            state.receiver = action.payload
         })
     },
 })
 
 export const {
     setDisplayState,
-    setSelectedConversation,
     setDirectMessage,
-    setNewMessage,
+    setMessage,
 } = chatStat.actions
 
 export default chatStat.reducer

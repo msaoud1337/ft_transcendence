@@ -32,11 +32,6 @@ const ProtectedRoute = () => {
         )
 }
 
-const token = {
-    headers : {
-        "Authorization" : `Bearer ${localStorage.getItem("UserKey")}`
-    }
-}
 
 export  const Router = createBrowserRouter(
     createRoutesFromElements(
@@ -48,14 +43,6 @@ export  const Router = createBrowserRouter(
                     <Route 
                         path=":chatId" 
                         element={<Chat />}
-                        loader={async ({params}) => {
-                            const response = await axios.get(`http://localhost:3001/api/messages/direct/${params.chatId}`,
-                                token
-                            )
-                            console.log("reFetshed")
-                            return response.data
-                        }}
-                        errorElement={<h1>Test</h1>}
                     />
                 </Route>
                 <Route path="users" element={<Users />} />

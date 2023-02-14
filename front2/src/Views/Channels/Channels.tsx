@@ -44,13 +44,7 @@ export const Channels = () => {
     const {friends} = useAppSelector(state => state.userSlice)
     const dispatch = useAppDispatch()
 
-    useEffect( () => {
-        socket.on("receive_message", (data : ChatType) => {
-            console.log(data)
-            // setMessages([...directMessages, data])
-        })
-    },[socket])
-    
+
     useEffect( () => {
         dispatch(GetFriends())
     },[])
